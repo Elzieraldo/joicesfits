@@ -13,22 +13,21 @@
       margin: 0;
       padding: 0;
       width: 100%;
-      height: auto; /* Diubah ke auto supaya halaman bisa di-scroll ke bawah */
-      background-color: #050505; /* Dasar paling bawah hitam */
-      overflow-x: hidden; /* Mencegah layar geser kanan-kiri */
+      height: auto; 
+      background-color: #050505; 
+      overflow-x: hidden; 
     }
 
-    /* Background Kotak-Kotak Full Screen (Kodingan Asli Kamu + Efek Fade Out) */
+    /* Background Kotak-Kotak Full Screen */
     .y2k-container {
       position: relative;
       width: 100%;   
       min-height: 100vh;  
       background-color: #fdfdfd; 
-      /* Ditambahkan gradasi dasar dari putih ke pink di batas paling bawah kanvas */
       background-image: linear-gradient(to bottom, transparent 80%, #ff69b4 100%);
     }
 
-    /* Efek Grid Biru Aslimu yang Memudar Halus di Batas Bawah */
+    /* Efek Grid Biru */
     .y2k-container::before {
       content: '';
       position: absolute;
@@ -42,23 +41,22 @@
       pointer-events: none;
     }
 
-    /* PAPAN VIRTUAL: Pengunci Rasio agar Laptop & HP Kembar Identik (Kodingan Asli) */
+    /* PAPAN VIRTUAL STIKER */
     .moodboard-canvas {
       position: relative;
       width: 100%;
       max-width: 100%;
-      aspect-ratio: 16 / 9; /* Mengunci rasio layar lebar standar monitor */
+      aspect-ratio: 16 / 9; 
       margin: 0 auto;
     }
 
     /* ======================================================= */
-    /* 💗 SECTION BARU 2: AREA PINK GRADASI (Di bawah Kanvas Asli) */
+    /* 💗 SECTION BARU 2: AREA PINK GRADASI (Tempat Pinterest) */
     /* ======================================================= */
     .section-pink {
       position: relative;
       width: 100%;
-      min-height: 90vh; 
-      /* Gradasi Pink sesuai contoh Canva: Pink Terang -> Pink Gelap -> Menuju Hitam */
+      min-height: 95vh; 
       background: linear-gradient(to bottom, #ff69b4 0%, #ff1493 40%, #d5006d 70%, #050505 100%);
       display: flex;
       flex-direction: column;
@@ -70,7 +68,7 @@
     }
 
     /* ======================================================= */
-    /* 🖤 SECTION BARU 3: AREA HITAM (Paling Bawah + Grid Abu-abu Memudar) */
+    /* 🖤 SECTION BARU 3: AREA HITAM (Paling Bawah)           */
     /* ======================================================= */
     .section-black {
       position: relative;
@@ -80,7 +78,6 @@
       padding-bottom: 40px;
     }
 
-    /* Efek Grid Abu-abu yang Muncul Perlahan dari Atas Area Hitam */
     .section-black::before {
       content: '';
       position: absolute;
@@ -94,7 +91,7 @@
       pointer-events: none;
     }
 
-    /* FOOTER KONTAK DI DALAM AREA HITAM */
+    /* FOOTER KONTAK */
     .footer-contact {
       position: relative;
       text-align: center;
@@ -103,9 +100,7 @@
       z-index: 10;
     }
 
-    /* ======================================================= */
-    /* SISA STYLE BAWAAN KODINGAN ASLI KAMU (TIDAK DIUBAH)      */
-    /* ======================================================= */
+    /* STYLE LOADING & ANIMASI POP STIKER */
     .loading-screen {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -144,133 +139,186 @@
       transform: scale(1.15) translateY(-5px) !important;
     }
 
-    /* 📐 KOORDINAT PERSENTASE ASLI KAMU */
+    /* 📐 KOORDINAT PERSENTASE STIKER */
     .kerang   { width: 14%;  top: 8%;  left: 5%;  }
-    .apel     { width: 15%;  top: 18%; left: 23%; } 
+    .apel      { width: 15%;  top: 18%; left: 23%; } 
     .kucing   { width: 15%;  top: 10%; left: 44%; }
-    .kopi     { width: 15%;  top: 18%; left: 63%; }
+    .kopi      { width: 15%;  top: 18%; left: 63%; }
     .fragile  { width: 14%;  top: 12%; left: 80%; } 
     
     .anjing   { width: 18%;  top: 42%; left: 5%;  }
-    .nota     { width: 18%;  top: 45%; left: 28%; } 
+    .nota      { width: 18%;  top: 45%; left: 28%; } 
     .pisang   { width: 15%;  top: 48%; left: 54%; } 
-    .kunci    { width: 18%;  top: 44%; left: 76%; } 
+    .kunci     { width: 18%;  top: 44%; left: 76%; } 
     
     .txt-mood { width: 42%;  top: 55%; left: 5%;  } 
     .txt-welc { width: 34%;  top: 58%; left: 58%; } 
 
-    /* CONTAINER UTAMA BROWSER NYATU DENGAN WADAH PINTEREST */
-.browser-window {
-  width: 100%;
-  max-width: 950px;
-  background: #e1e1e2; /* Warna abu-abu dasar header */
-  border-radius: 12px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-  margin: 0 auto 30px auto;
-  overflow: hidden; /* Biar ujung bawah kotak tetap tumpul rapi */
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-}
+    /* CONTAINER UTAMA BROWSER WINDOW */
+    .browser-window {
+      width: 100%;
+      max-width: 950px;
+      background: #e1e1e2; 
+      border-radius: 12px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+      margin: 0 auto 30px auto;
+      overflow: hidden; 
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-/* BARIS ATAS: TOMBOL MAC + TAB */
-.browser-top-bar {
-  display: flex;
-  align-items: flex-end;
-  padding: 10px 16px 0 16px;
-  background: #e1e1e2;
-  position: relative;
-}
+    .browser-top-bar {
+      display: flex;
+      align-items: flex-end;
+      padding: 10px 16px 0 16px;
+      background: #e1e1e2;
+      position: relative;
+    }
 
-.mac-buttons {
-  display: flex;
-  gap: 6px;
-  position: absolute;
-  top: 14px;
-  left: 16px;
-}
-.circle {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-.close-btn { background: #ff5f56; }
-.minimize-btn { background: #ffbd2e; }
-.maximize-btn { background: #27c93f; }
+    .mac-buttons {
+      display: flex;
+      gap: 6px;
+      position: absolute;
+      top: 14px;
+      left: 16px;
+    }
+    .circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .close-btn { background: #ff5f56; }
+    .minimize-btn { background: #ffbd2e; }
+    .maximize-btn { background: #27c93f; }
 
-.tab-container {
-  display: flex;
-  align-items: flex-end;
-  gap: 4px;
-  margin-left: 60px; /* Kasih ruang agar tidak menabrak tombol mac */
-  width: 100%;
-}
+    .tab-container {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      margin-left: 60px; 
+      width: 100%;
+    }
 
-.tab {
-  position: relative;
-  padding: 8px 28px;
-  font-size: 13px;
-  font-weight: bold;
-  color: #666;
-  cursor: pointer;
-  background: transparent;
-  user-select: none;
-  border-radius: 8px 8px 0 0;
-  transition: all 0.2s;
-}
+    .tab {
+      position: relative;
+      padding: 8px 28px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #666;
+      cursor: pointer;
+      background: transparent;
+      user-select: none;
+      border-radius: 8px 8px 0 0;
+      transition: all 0.2s;
+    }
 
-/* Warna Tab Saat Aktif */
-.tab.active {
-  color: #000;
-  background: #f1f1f2; /* Warna ini akan menyatu dengan area search bar di bawahnya */
-}
+    .tab.active {
+      color: #000;
+      background: #f1f1f2; 
+    }
 
-/* BARIS KEDUA: AREA SEARCH BAR (WARNA MENYATU DENGAN HEADER & TAB AKTIF) */
-.browser-search-bar-row {
-  background: #f1f1f2; /* Warnanya sama dengan tab aktif agar menyatu murni */
-  padding: 8px 16px;
-  border-bottom: 2px solid #dbdbdb;
-}
+    /* AREA SEARCH BAR + TEXT HINT REQUEST KAMU */
+    .browser-search-bar-row {
+      background: #f1f1f2; 
+      padding: 8px 16px 12px 16px;
+      border-bottom: 2px solid #dbdbdb;
+      display: flex;
+      flex-direction: column;
+    }
 
-.search-box {
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  padding: 6px 12px;
-  font-size: 13px;
-  color: #333;
-  outline: none;
-}
+    .search-box {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 13px;
+      color: #333;
+      outline: none;
+    }
 
-/* KOTAK WADAH UTAMA PINTEREST (BISA DI-SCROLL & EFEK NGINTIP) */
-.pinterest-scroll-box {
-  background: #ffffff; /* Latar belakang putih bersih tempat foto nempel */
-  height: 520px; /* Kunci tinggi ruang agar pas menampilkan 5 baris + baris ke-6 kepotong setengah */
-  overflow-y: scroll; /* Aktifkan scroll vertikal jika foto melimpah */
-  padding: 20px;
-}
+    /* Kalimat Petunjuk Tambahan Tepat di Bawah Search Box */
+    .search-hint-text {
+      font-size: 11px;
+      color: #666;
+      font-style: italic;
+      margin-top: 6px;
+      margin-left: 4px;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-/* GRID MAKSIMAL 3 FOTO PER BARIS */
-.outfit-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
+    .pinterest-scroll-box {
+      background: #ffffff; 
+      height: 520px; 
+      overflow-y: scroll; 
+      padding: 20px;
+    }
 
-/* KARTU ITEM FASHION UKURAN IG 4:5 */
-.outfit-card {
-  width: 100%;
-  aspect-ratio: 4 / 5; /* Rasio Pas Potret Instagram 4:5 */
-  background: #f5f5f5;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
+    .outfit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      transition: all 0.4s ease;
+    }
 
-.outfit-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Biar foto pas memenuhi rasio tanpa gepeng */
-}
+    /* 📦 ANIMASI KEDUT & BLUR MANAGEMENT (REQUEST SPESTAL) */
+    .outfit-card {
+      width: 100%;
+      aspect-ratio: 4 / 5; 
+      background: #f5f5f5;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      position: relative;
+      cursor: pointer;
+      transition: filter 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Kerangka Teks Overlay "Click to open" */
+    .click-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: 'Courier New', Courier, monospace;
+      letter-spacing: 1px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none; /* Biar gak ngeblok klik mouse */
+    }
+
+    /* Jalankan Animasi Denyut Nadi / Kedut */
+    @keyframes heartbeat {
+      0% { transform: scale(1); box-shadow: 0 4px 10px rgba(255, 20, 147, 0.2); }
+      50% { transform: scale(1.03); box-shadow: 0 12px 28px rgba(255, 20, 147, 0.6); }
+      100% { transform: scale(1); box-shadow: 0 4px 10px rgba(255, 20, 147, 0.2); }
+    }
+
+    /* Ketika terpicu scroll, outfit-card pertama dapet kelas ini */
+    .outfit-card.focus-pulse {
+      animation: heartbeat 1.4s infinite ease-in-out;
+      border: 3px solid #ff1493;
+    }
+    /* Memunculkan tulisan "Click to open?" */
+    .outfit-card.focus-pulse .click-overlay {
+      opacity: 1;
+    }
+
+    /* Kartu lain yang dapet kelas blur bakal buram otomatis */
+    .outfit-card.focus-blur {
+      filter: blur(5px);
+      opacity: 0.5;
+    }
+
+    .outfit-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; 
+    }
   </style>
 </head>
 <body>
@@ -298,43 +346,47 @@
     </div>
   </div>
 
-  <div class="section-pink">
- <div class="section-pink">
-  
-  <div class="browser-window">
+  <div class="section-pink" id="pinterest-section">
     
-    <div class="browser-top-bar">
-      <div class="mac-buttons">
-        <div class="circle close-btn"></div>
-        <div class="circle minimize-btn"></div>
-        <div class="circle maximize-btn"></div>
+    <div class="browser-window">
+      
+      <div class="browser-top-bar">
+        <div class="mac-buttons">
+          <div class="circle close-btn"></div>
+          <div class="circle minimize-btn"></div>
+          <div class="circle maximize-btn"></div>
+        </div>
+        <div class="tab-container" id="tabs">
+          <div class="tab active" onclick="gantiTab(this)">ALL</div>
+          <div class="tab" onclick="gantiTab(this)">BY STYLE</div>
+        </div>
       </div>
-      <div class="tab-container" id="tabs">
-        <div class="tab active" onclick="gantiTab(this)">ALL</div>
-        <div class="tab" onclick="gantiTab(this)">BY STYLE</div>
-      </div>
-    </div>
 
-    <div class="browser-search-bar-row">
-      <input type="text" class="search-box" placeholder="🔍 Search outfit...">
-    </div>
-
-    <div class="pinterest-scroll-box">
-      <div class="outfit-grid">
-        
-        <div class="outfit-card"><img src="https://via.placeholder.com/400x500" alt="Outfit 1"></div>
-        <div class="outfit-card"><img src="https://via.placeholder.com/400x500" alt="Outfit 2"></div>
-        <div class="outfit-card"><img src="https://via.placeholder.com/400x500" alt="Outfit 3"></div>
-        <div class="outfit-card"><img src="https://via.placeholder.com/400x500" alt="Outfit 4"></div>
-        <div class="outfit-card"><img src="https://via.placeholder.com/400x500" alt="Outfit 5"></div>
-        <div class="outfit-card"><img src="https://via.placeholder.com/400x500" alt="Outfit 6"></div>
-        
+      <div class="browser-search-bar-row">
+        <input type="text" class="search-box" placeholder="🔍 Search outfit...">
+        <span class="search-hint-text">Klik outfit untuk melihat detail baju dan dimana membelinya ✨</span>
       </div>
+
+      <div class="pinterest-scroll-box">
+        <div class="outfit-grid" id="outfitGrid">
+          
+          <div class="outfit-card" id="targetOutfit">
+            <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit Utama">
+            <div class="click-overlay">CLICK TO OPEN?</div>
+          </div>
+
+          <div class="outfit-card"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 2"></div>
+          <div class="outfit-card"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 3"></div>
+          <div class="outfit-card"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 4"></div>
+          <div class="outfit-card"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 5"></div>
+          <div class="outfit-card"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 6"></div>
+          
+        </div>
+      </div>
+
     </div>
 
   </div>
-
-</div>
 
   <div class="section-black">
     <div class="footer-contact">
@@ -345,8 +397,8 @@
     </div>
   </div>
 
- <script>
-    // 1. Fungsi Loader Screen
+  <script>
+    // 1. Loader Screen Script
     window.addEventListener('load', function() {
       const loader = document.getElementById('y2k-loader');
       if (loader) {
@@ -361,7 +413,7 @@
       }
     });
 
-    // 2. Fungsi Animasi Pop-Up Stiker Saat Diklik
+    // 2. Animasi Pop-Up Stiker Saat Diklik
     document.querySelectorAll('.stiker').forEach(function(button) {
       button.addEventListener('click', function() {
         document.querySelectorAll('.stiker').forEach(function(el) {
@@ -372,11 +424,44 @@
       });
     });
 
-    // 3. Fungsi Khusus Ganti Highlight Warna Tab (ALL & BY STYLE)
+    // 3. Fungsi Navigasi Tab
     function gantiTab(elemen) {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       elemen.classList.add('active');
     }
+
+    // 4. SCRIPT LOGIKA KUNCI FOKUS & SCROLL DETECTOR (REQUEST SPECIAL!)
+    const targetSection = document.getElementById('pinterest-section');
+    const targetCard = document.getElementById('targetOutfit');
+    const allCards = document.querySelectorAll('.outfit-card');
+
+    const observerOptions = {
+      root: null,
+      threshold: 0.4 // Memicu efek ketika 40% area pinterest sudah muncul di layar
+    };
+
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // AKTIFKAN SIHIR: Target kedut-kedut, yang lain kena kutuk blur!
+          targetCard.classList.add('focus-pulse');
+          allCards.forEach(card => {
+            if (card !== targetCard) {
+              card.classList.add('focus-blur');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    // Mulai mengawasi pergerakan scroll menuju section pinterest
+    scrollObserver.observe(targetSection);
+
+    // Menghilangkan efek blur & kedut saat kartu utama sukses diklik user
+    targetCard.addEventListener('click', function() {
+      targetCard.classList.remove('focus-pulse');
+      allCards.forEach(card => card.classList.remove('focus-blur'));
+    });
   </script>
-  </body>
+</body>
 </html>
