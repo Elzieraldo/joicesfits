@@ -158,6 +158,119 @@
     
     .txt-mood { width: 42%;  top: 55%; left: 5%;  } 
     .txt-welc { width: 34%;  top: 58%; left: 58%; } 
+
+    /* CONTAINER UTAMA BROWSER NYATU DENGAN WADAH PINTEREST */
+.browser-window {
+  width: 100%;
+  max-width: 950px;
+  background: #e1e1e2; /* Warna abu-abu dasar header */
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  margin: 0 auto 30px auto;
+  overflow: hidden; /* Biar ujung bawah kotak tetap tumpul rapi */
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* BARIS ATAS: TOMBOL MAC + TAB */
+.browser-top-bar {
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 16px 0 16px;
+  background: #e1e1e2;
+  position: relative;
+}
+
+.mac-buttons {
+  display: flex;
+  gap: 6px;
+  position: absolute;
+  top: 14px;
+  left: 16px;
+}
+.circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.close-btn { background: #ff5f56; }
+.minimize-btn { background: #ffbd2e; }
+.maximize-btn { background: #27c93f; }
+
+.tab-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  margin-left: 60px; /* Kasih ruang agar tidak menabrak tombol mac */
+  width: 100%;
+}
+
+.tab {
+  position: relative;
+  padding: 8px 28px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  background: transparent;
+  user-select: none;
+  border-radius: 8px 8px 0 0;
+  transition: all 0.2s;
+}
+
+/* Warna Tab Saat Aktif */
+.tab.active {
+  color: #000;
+  background: #f1f1f2; /* Warna ini akan menyatu dengan area search bar di bawahnya */
+}
+
+/* BARIS KEDUA: AREA SEARCH BAR (WARNA MENYATU DENGAN HEADER & TAB AKTIF) */
+.browser-search-bar-row {
+  background: #f1f1f2; /* Warnanya sama dengan tab aktif agar menyatu murni */
+  padding: 8px 16px;
+  border-bottom: 2px solid #dbdbdb;
+}
+
+.search-box {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: #333;
+  outline: none;
+}
+
+/* KOTAK WADAH UTAMA PINTEREST (BISA DI-SCROLL & EFEK NGINTIP) */
+.pinterest-scroll-box {
+  background: #ffffff; /* Latar belakang putih bersih tempat foto nempel */
+  height: 520px; /* Kunci tinggi ruang agar pas menampilkan 5 baris + baris ke-6 kepotong setengah */
+  overflow-y: scroll; /* Aktifkan scroll vertikal jika foto melimpah */
+  padding: 20px;
+}
+
+/* GRID MAKSIMAL 3 FOTO PER BARIS */
+.outfit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* KARTU ITEM FASHION UKURAN IG 4:5 */
+.outfit-card {
+  width: 100%;
+  aspect-ratio: 4 / 5; /* Rasio Pas Potret Instagram 4:5 */
+  background: #f5f5f5;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.outfit-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Biar foto pas memenuhi rasio tanpa gepeng */
+}
   </style>
 </head>
 <body>
@@ -186,8 +299,42 @@
   </div>
 
   <div class="section-pink">
-    <h2 style="letter-spacing: 2px;">[ AREA PINK: JALUR STEP BY STEP FOLDER ]</h2>
+ <div class="section-pink">
+  
+  <div class="browser-window">
+    
+    <div class="browser-top-bar">
+      <div class="mac-buttons">
+        <div class="circle close-btn"></div>
+        <div class="circle minimize-btn"></div>
+        <div class="circle maximize-btn"></div>
+      </div>
+      <div class="tab-container" id="tabs">
+        <div class="tab active" onclick="gantiTab(this)">ALL</div>
+        <div class="tab" onclick="gantiTab(this)">BY STYLE</div>
+      </div>
+    </div>
+
+    <div class="browser-search-bar-row">
+      <input type="text" class="search-box" placeholder="🔍 Search outfit...">
+    </div>
+
+    <div class="pinterest-scroll-box">
+      <div class="outfit-grid">
+        
+        <div class="outfit-card"><img src="https://via.placeholder.com/400x500" alt="Outfit 1"></div>
+        <div class="outfit-card"><img src="https://via.placeholder.com/400x500" alt="Outfit 2"></div>
+        <div class="outfit-card"><img src="https://via.placeholder.com/400x500" alt="Outfit 3"></div>
+        <div class="outfit-card"><img src="https://via.placeholder.com/400x500" alt="Outfit 4"></div>
+        <div class="outfit-card"><img src="https://via.placeholder.com/400x500" alt="Outfit 5"></div>
+        <div class="outfit-card"><img src="https://via.placeholder.com/400x500" alt="Outfit 6"></div>
+        
+      </div>
+    </div>
+
   </div>
+
+</div>
 
   <div class="section-black">
     <div class="footer-contact">
@@ -198,7 +345,8 @@
     </div>
   </div>
 
-  <script>
+ <script>
+    // 1. Fungsi Loader Screen
     window.addEventListener('load', function() {
       const loader = document.getElementById('y2k-loader');
       if (loader) {
@@ -213,6 +361,7 @@
       }
     });
 
+    // 2. Fungsi Animasi Pop-Up Stiker Saat Diklik
     document.querySelectorAll('.stiker').forEach(function(button) {
       button.addEventListener('click', function() {
         document.querySelectorAll('.stiker').forEach(function(el) {
@@ -222,6 +371,12 @@
         });
       });
     });
+
+    // 3. Fungsi Khusus Ganti Highlight Warna Tab (ALL & BY STYLE)
+    function gantiTab(elemen) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      elemen.classList.add('active');
+    }
   </script>
-</body>
+  </body>
 </html>
