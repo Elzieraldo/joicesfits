@@ -1,0 +1,145 @@
+<style>
+  /* 1. Backgroundnya */
+  .y2k-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px; 
+    aspect-ratio: 16 / 9; 
+    margin: 0 auto;
+    
+    background-color: #fdfdfd; 
+    background-image: 
+      linear-gradient(to right, #bde0fe 1px, transparent 1px), 
+      linear-gradient(to bottom, #bde0fe 1px, transparent 1px); 
+    background-size: 15px 15px; 
+    
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  /* 2. Loading Screen */
+  .loading-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fdfdfd;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .spinner {
+    width: 45px;
+    height: 45px;
+    border: 5px solid #e3e3e3;
+    border-top: 5px solid #bde0fe;
+    border-radius: 50%;
+    animation: putar 1s linear infinite;
+    margin-bottom: 12px;
+  }
+  @keyframes putar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .loading-text {
+    font-family: 'Courier New', Courier, monospace;
+    color: #a2d2ff;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+
+  /* 3. Efek Animasi Pop Up */
+  @keyframes popUp {
+    0% { opacity: 0; transform: scale(0.2) rotate(-15deg); }
+    60% { opacity: 1; transform: scale(1.2) rotate(10deg); }
+    80% { transform: scale(0.9) rotate(-5deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+
+  /* 4. Pengaturan Elemen */
+  .stiker {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    transition: transform 0.2s;
+    will-change: transform, opacity;
+  }
+  
+  .stiker.mulai-pop {
+    animation: popUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+  .stiker:hover {
+    transform: scale(1.15) translateY(-5px) !important;
+  }
+
+  /* 5. TATA LETAK BARU */
+  /* Bagian Elemen */
+  .kerang   { width: 16%;  top: 8%;  left: 4.5%;  }
+  .apel     { width: 18%;  top: 18%; left: 23.5%; } 
+  .kucing   { width: 19%;  top: 12%; left: 44.5%; }
+  .kopi     { width: 18%;  top: 18%; left: 63.5%; }
+  .fragile  { width: 16%;  top: 12%; left: 79.5%; } 
+  .anjing   { width: 21%;  top: 40%; left: 4.5%;  }
+  .nota     { width: 22%;  top: 43%; left: 27.5%; } /* Kunci rumah merah diperbesar banget! */
+  .pisang   { width: 17%;  top: 46%; left: 53.5%; } /* Pisang digeser menjauh ke kanan */
+  .kunci    { width: 22%;  top: 42%; left: 73.5%; } 
+  
+  /* Bagian Teks */
+  .txt-mood { width: 46%;  top: 66%; left: 4.5%;  } 
+  .txt-welc { width: 38%;  top: 71%; left: 57.5%; } 
+</style>
+
+<div class="y2k-container">
+  
+  <div class="loading-screen" id="y2k-loader">
+    <div class="spinner"></div>
+    <div class="loading-text">HOLD ON, BESTIE...</div>
+  </div>
+
+  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-2.png" class="stiker kerang" alt="Kerang" loading="eager" fetchpriority="high">
+  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-3.png" class="stiker apel" alt="Apel" loading="eager" fetchpriority="high">
+  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-4.png" class="stiker kucing" alt="Kucing" loading="eager" fetchpriority="high">
+  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-5.png" class="stiker kopi" alt="Kopi" loading="eager" fetchpriority="high">
+  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-6.png" class="stiker fragile" alt="Fragile" loading="eager" fetchpriority="high">
+  
+  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-7.png" class="stiker anjing" alt="Anjing" loading="eager" fetchpriority="high">
+  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-10-1.png" class="stiker nota" alt="Nota Kunci" loading="eager" fetchpriority="high">
+  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-9.png" class="stiker pisang" alt="Pisang" loading="eager" fetchpriority="high">
+  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-11.png" class="stiker kunci" alt="Kunci" loading="eager" fetchpriority="high">
+  
+  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-12.png" class="stiker txt-mood" alt="Moodboard Text" loading="eager" fetchpriority="high">
+  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-13.png" class="stiker txt-welc" alt="Welcome Text" loading="eager" fetchpriority="high">
+</div>
+
+<script>
+  window.addEventListener('load', function() {
+    const loader = document.getElementById('y2k-loader');
+    if (loader) {
+      loader.style.opacity = '0';
+      loader.style.transform = 'scale(1.05)';
+      
+      setTimeout(function() {
+        loader.style.display = 'none';
+        document.querySelectorAll('.stiker').forEach(function(el) {
+          el.classList.add('mulai-pop');
+        });
+      }, 500); 
+    }
+  });
+
+  document.querySelectorAll('.stiker').forEach(function(button) {
+    button.addEventListener('click', function() {
+      document.querySelectorAll('.stiker').forEach(function(el) {
+        el.classList.remove('mulai-pop');
+        void el.offsetWidth; 
+        el.classList.add('mulai-pop');
+      });
+    });
+  });
+</script>
