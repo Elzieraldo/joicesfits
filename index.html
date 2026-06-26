@@ -13,24 +13,36 @@
       margin: 0;
       padding: 0;
       width: 100%;
-      height: 100%;
-      background-color: #fdfdfd;
+      height: auto; /* Diubah ke auto supaya halaman bisa di-scroll ke bawah */
+      background-color: #050505; /* Dasar paling bawah hitam */
       overflow-x: hidden; /* Mencegah layar geser kanan-kiri */
     }
 
-    /* Background Kotak-Kotak Full Screen */
+    /* Background Kotak-Kotak Full Screen (Kodingan Asli Kamu + Efek Fade Out) */
     .y2k-container {
       position: relative;
       width: 100%;   
       min-height: 100vh;  
       background-color: #fdfdfd; 
+      /* Ditambahkan gradasi dasar dari putih ke pink di batas paling bawah kanvas */
+      background-image: linear-gradient(to bottom, transparent 80%, #ff69b4 100%);
+    }
+
+    /* Efek Grid Biru Aslimu yang Memudar Halus di Batas Bawah */
+    .y2k-container::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
       background-image: 
         linear-gradient(to right, #bde0fe 1px, transparent 1px), 
         linear-gradient(to bottom, #bde0fe 1px, transparent 1px); 
-      background-size: 15px 15px; 
+      background-size: 15px 15px;
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+      pointer-events: none;
     }
 
-    /* PAPAN VIRTUAL: Pengunci Rasio agar Laptop & HP Kembar Identik */
+    /* PAPAN VIRTUAL: Pengunci Rasio agar Laptop & HP Kembar Identik (Kodingan Asli) */
     .moodboard-canvas {
       position: relative;
       width: 100%;
@@ -39,43 +51,82 @@
       margin: 0 auto;
     }
 
-    /* Layar Loading */
-    .loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
+    /* ======================================================= */
+    /* 💗 SECTION BARU 2: AREA PINK GRADASI (Di bawah Kanvas Asli) */
+    /* ======================================================= */
+    .section-pink {
+      position: relative;
       width: 100%;
-      height: 100%;
-      background-color: #fdfdfd;
-      z-index: 9999;
+      min-height: 90vh; 
+      /* Gradasi Pink sesuai contoh Canva: Pink Terang -> Pink Gelap -> Menuju Hitam */
+      background: linear-gradient(to bottom, #ff69b4 0%, #ff1493 40%, #d5006d 70%, #050505 100%);
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 40px 20px;
+    }
+
+    /* ======================================================= */
+    /* 🖤 SECTION BARU 3: AREA HITAM (Paling Bawah + Grid Abu-abu Memudar) */
+    /* ======================================================= */
+    .section-black {
+      position: relative;
+      width: 100%;
+      min-height: 80vh;
+      background-color: #050505;
+      padding-bottom: 40px;
+    }
+
+    /* Efek Grid Abu-abu yang Muncul Perlahan dari Atas Area Hitam */
+    .section-black::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        linear-gradient(to right, #2a2a2a 1px, transparent 1px), 
+        linear-gradient(to bottom, #2a2a2a 1px, transparent 1px);
+      background-size: 15px 15px;
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%);
+      pointer-events: none;
+    }
+
+    /* FOOTER KONTAK DI DALAM AREA HITAM */
+    .footer-contact {
+      position: relative;
+      text-align: center;
+      padding: 60px 20px 20px 20px;
+      font-family: 'Courier New', Courier, monospace;
+      z-index: 10;
+    }
+
+    /* ======================================================= */
+    /* SISA STYLE BAWAAN KODINGAN ASLI KAMU (TIDAK DIUBAH)      */
+    /* ======================================================= */
+    .loading-screen {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-color: #fdfdfd; z-index: 9999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
     .spinner {
-      width: 45px;
-      height: 45px;
-      border: 5px solid #e3e3e3;
-      border-top: 5px solid #bde0fe;
-      border-radius: 50%;
-      animation: putar 1s linear infinite;
-      margin-bottom: 12px;
+      width: 45px; height: 45px; border: 5px solid #e3e3e3;
+      border-top: 5px solid #bde0fe; border-radius: 50%;
+      animation: putar 1s linear infinite; margin-bottom: 12px;
     }
     @keyframes putar {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
     .loading-text {
-      font-family: 'Courier New', Courier, monospace;
-      color: #a2d2ff;
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 2px;
+      font-family: 'Courier New', Courier, monospace; color: #a2d2ff;
+      font-size: 13px; font-weight: bold; letter-spacing: 2px;
     }
 
-    /* Animasi Pop Up */
     @keyframes popUp {
       0% { opacity: 0; transform: scale(0.2) rotate(-15deg); }
       60% { opacity: 1; transform: scale(1.2) rotate(10deg); }
@@ -83,13 +134,8 @@
       100% { opacity: 1; transform: scale(1) rotate(0deg); }
     }
 
-    /* Pengaturan Dasar Stiker */
     .stiker {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-      transition: transform 0.2s;
-      will-change: transform, opacity;
+      position: absolute; opacity: 0; cursor: pointer; transition: transform 0.2s; will-change: transform, opacity;
     }
     .stiker.mulai-pop {
       animation: popUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
@@ -98,9 +144,7 @@
       transform: scale(1.15) translateY(-5px) !important;
     }
 
-    /* ======================================================= */
-    /* 📐 KOORDINAT PERSENTASE PERSIS SEPERTI DI LAPTOP KAMU */
-    /* ======================================================= */
+    /* 📐 KOORDINAT PERSENTASE ASLI KAMU */
     .kerang   { width: 14%;  top: 8%;  left: 5%;  }
     .apel     { width: 15%;  top: 18%; left: 23%; } 
     .kucing   { width: 15%;  top: 10%; left: 44%; }
@@ -138,6 +182,19 @@
       
       <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-12.png" class="stiker txt-mood" alt="Moodboard Text" loading="eager" fetchpriority="high">
       <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-13.png" class="stiker txt-welc" alt="Welcome Text" loading="eager" fetchpriority="high">
+    </div>
+  </div>
+
+  <div class="section-pink">
+    <h2 style="letter-spacing: 2px;">[ AREA PINK: JALUR STEP BY STEP FOLDER ]</h2>
+  </div>
+
+  <div class="section-black">
+    <div class="footer-contact">
+      <h3 style="margin: 0 0 15px 0; letter-spacing: 3px; color: white; font-size: 24px;">CONTACT ME</h3>
+      <p style="color: #ffb6c1; font-weight: bold; font-size: 15px; margin: 0;">
+        ✉️ contact@joicesfits.com &nbsp;&nbsp;|&nbsp;&nbsp; 📸 @joicesfits
+      </p>
     </div>
   </div>
 
