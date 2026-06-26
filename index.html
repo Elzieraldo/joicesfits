@@ -1,143 +1,194 @@
-<style>
-  /* 1. Background Full Screen Tanpa Batas */
-  .y2k-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;   
-    height: 100vh;  
-    z-index: 1;
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joice's Fits Moodboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
     
-    background-color: #fdfdfd; 
-    background-image: 
-      linear-gradient(to right, #bde0fe 1px, transparent 1px), 
-      linear-gradient(to bottom, #bde0fe 1px, transparent 1px); 
-    background-size: 15px 15px; 
-    overflow: hidden;
-  }
+    /* Memaksa halaman dasar kosong tanpa margin/padding */
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fdfdfd;
+    }
 
-  /* 2. Loading Screen */
-  .loading-screen {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fdfdfd;
-    z-index: 9999; /* Dinaikkan agar menutupi segalanya saat loading */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-  .spinner {
-    width: 45px;
-    height: 45px;
-    border: 5px solid #e3e3e3;
-    border-top: 5px solid #bde0fe;
-    border-radius: 50%;
-    animation: putar 1s linear infinite;
-    margin-bottom: 12px;
-  }
-  @keyframes putar {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  .loading-text {
-    font-family: 'Courier New', Courier, monospace;
-    color: #a2d2ff;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 2px;
-  }
+    /* 1. Background Kotak-Kotak: DIJAMIN 100% LIVE FULL SCREEN MENTOK UJUNG */
+    .y2k-container {
+      position: relative;
+      width: 100%;   
+      min-height: 100vh;  
+      background-color: #fdfdfd; 
+      background-image: 
+        linear-gradient(to right, #bde0fe 1px, transparent 1px), 
+        linear-gradient(to bottom, #bde0fe 1px, transparent 1px); 
+      background-size: 15px 15px; 
+      padding: 20px;
+    }
 
-  /* 3. Efek Animasi Pop Up */
-  @keyframes popUp {
-    0% { opacity: 0; transform: scale(0.2) rotate(-15deg); }
-    60% { opacity: 1; transform: scale(1.2) rotate(10deg); }
-    80% { transform: scale(0.9) rotate(-5deg); }
-    100% { opacity: 1; transform: scale(1) rotate(0deg); }
-  }
+    /* 2. Layar Loading Screen */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fdfdfd;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .spinner {
+      width: 45px;
+      height: 45px;
+      border: 5px solid #e3e3e3;
+      border-top: 5px solid #bde0fe;
+      border-radius: 50%;
+      animation: putar 1s linear infinite;
+      margin-bottom: 12px;
+    }
+    @keyframes putar {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .loading-text {
+      font-family: 'Courier New', Courier, monospace;
+      color: #a2d2ff;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
 
-  /* 4. Pengaturan Elemen */
-  .stiker {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    transition: transform 0.2s;
-    will-change: transform, opacity;
-  }
-  
-  .stiker.mulai-pop {
-    animation: popUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  }
-  .stiker:hover {
-    transform: scale(1.15) translateY(-5px) !important;
-  }
+    /* 3. Efek Animasi Pop Up */
+    @keyframes popUp {
+      0% { opacity: 0; transform: scale(0.2) rotate(-15deg); }
+      60% { opacity: 1; transform: scale(1.2) rotate(10deg); }
+      80% { transform: scale(0.9) rotate(-5deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
 
-  /* 5. TATA LETAK MENGGUNAKAN VW & VH BERSKALA FULL SCREEN */
-  .kerang   { width: 14vw;  top: 8vh;  left: 5vw;  }
-  .apel     { width: 15vw;  top: 20vh; left: 23vw; } 
-  .kucing   { width: 16vw;  top: 10vh; left: 44vw; }
-  .kopi     { width: 15vw;  top: 20vh; left: 63vw; }
-  .fragile  { width: 14vw;  top: 12vh; left: 80vw; } 
-  
-  .anjing   { width: 18vw;  top: 42vh; left: 5vw;  }
-  .nota     { width: 19vw;  top: 44vh; left: 28vw; } 
-  .pisang   { width: 15vw;  top: 48vh; left: 54vw; } 
-  .kunci    { width: 18vw;  top: 44vh; left: 76vw; } 
-  
-  /* Bagian Teks */
-  .txt-mood { width: 42vw;  top: 68vh; left: 5vw;  } 
-  .txt-welc { width: 34vw;  top: 74vh; left: 58vw; } 
-</style>
+    /* 4. Aturan Dasar Stiker */
+    .stiker {
+      opacity: 0;
+      cursor: pointer;
+      transition: transform 0.2s;
+      will-change: transform, opacity;
+    }
+    .stiker.mulai-pop {
+      animation: popUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    .stiker:hover {
+      transform: scale(1.15) translateY(-5px) !important;
+    }
 
-<div class="y2k-container">
-  
-  <div class="loading-screen" id="y2k-loader">
-    <div class="spinner"></div>
-    <div class="loading-text">HOLD ON, BESTIE...</div>
+    /* ======================================================= */
+    /* 💻 TAMPILAN LAPTOP / DESKTOP (Stiker Menyebar Estetik) */
+    /* ======================================================= */
+    @media (min-width: 769px) {
+      .y2k-container {
+        height: 100vh;
+        overflow: auto;
+      }
+      .stiker {
+        position: absolute;
+      }
+      /* Tata letak persis berskala layar lebar */
+      .kerang   { width: 13vw;  top: 8vh;  left: 4vw;  }
+      .apel     { width: 14vw;  top: 18vh; left: 22vw; } 
+      .kucing   { width: 14vw;  top: 10vh; left: 44vw; }
+      .kopi     { width: 14vw;  top: 18vh; left: 63vw; }
+      .fragile  { width: 13vw;  top: 12vh; left: 81vw; } 
+      
+      .anjing   { width: 16vw;  top: 42vh; left: 4vw;  }
+      .nota     { width: 17vw;  top: 44vh; left: 26vw; } 
+      .pisang   { width: 14vw;  top: 46vh; left: 52vw; } 
+      .kunci    { width: 16vw;  top: 42vh; left: 78vw; } 
+      
+      .txt-mood { width: 38vw;  top: 72vh; left: 4vw;  } 
+      .txt-welc { width: 32vw;  top: 75vh; left: 64vw; } 
+    }
+
+    /* ======================================================= */
+    /* 📱 TAMPILAN HP / MOBILE (Otomatis Rapi Berbaris Kebawah)*/
+    /* ======================================================= */
+    @media (max-width: 768px) {
+      .y2k-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px; /* Jarak antar stiker saat di-scroll */
+        padding-top: 40px;
+        padding-bottom: 60px;
+        overflow-y: auto; /* Biar HP bisa di-scroll kebawah */
+      }
+      .stiker {
+        position: relative;
+        max-width: 75%; /* Ukuran pas stiker di layar HP */
+        height: auto;
+      }
+      /* Mengatur urutan teks agar paling atas di HP */
+      .txt-welc { order: -2; max-width: 85%; }
+      .txt-mood { order: -1; max-width: 90%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="y2k-container">
+    <div class="loading-screen" id="y2k-loader">
+      <div class="spinner"></div>
+      <div class="loading-text">HOLD ON, BESTIE...</div>
+    </div>
+
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-2.png" class="stiker kerang" alt="Kerang" loading="eager" fetchpriority="high">
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-3.png" class="stiker apel" alt="Apel" loading="eager" fetchpriority="high">
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-4.png" class="stiker kucing" alt="Kucing" loading="eager" fetchpriority="high">
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-5.png" class="stiker kopi" alt="Kopi" loading="eager" fetchpriority="high">
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-6.png" class="stiker fragile" alt="Fragile" loading="eager" fetchpriority="high">
+    
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-7.png" class="stiker anjing" alt="Anjing" loading="eager" fetchpriority="high">
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-10-1.png" class="stiker nota" alt="Nota Kunci" loading="eager" fetchpriority="high">
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-9.png" class="stiker pisang" alt="Pisang" loading="eager" fetchpriority="high">
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-11.png" class="stiker kunci" alt="Kunci" loading="eager" fetchpriority="high">
+    
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-12.png" class="stiker txt-mood" alt="Moodboard Text" loading="eager" fetchpriority="high">
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-13.png" class="stiker txt-welc" alt="Welcome Text" loading="eager" fetchpriority="high">
   </div>
 
-  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-2.png" class="stiker kerang" alt="Kerang" loading="eager" fetchpriority="high">
-  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-3.png" class="stiker apel" alt="Apel" loading="eager" fetchpriority="high">
-  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-4.png" class="stiker kucing" alt="Kucing" loading="eager" fetchpriority="high">
-  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-5.png" class="stiker kopi" alt="Kopi" loading="eager" fetchpriority="high">
-  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-6.png" class="stiker fragile" alt="Fragile" loading="eager" fetchpriority="high">
-  
-  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-7.png" class="stiker anjing" alt="Anjing" loading="eager" fetchpriority="high">
-  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-10-1.png" class="stiker nota" alt="Nota Kunci" loading="eager" fetchpriority="high">
-  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-9.png" class="stiker pisang" alt="Pisang" loading="eager" fetchpriority="high">
-  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-11.png" class="stiker kunci" alt="Kunci" loading="eager" fetchpriority="high">
-  
-  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-12.png" class="stiker txt-mood" alt="Moodboard Text" loading="eager" fetchpriority="high">
-  <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-13.png" class="stiker txt-welc" alt="Welcome Text" loading="eager" fetchpriority="high">
-</div>
+  <script>
+    // Script Menghilangkan Loader & Memicu Efek Pop Up
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('y2k-loader');
+      if (loader) {
+        loader.style.opacity = '0';
+        loader.style.transform = 'scale(1.05)';
+        setTimeout(function() {
+          loader.style.display = 'none';
+          document.querySelectorAll('.stiker').forEach(function(el) {
+            el.classList.add('mulai-pop');
+          });
+        }, 500); 
+      }
+    });
 
-<script>
-  window.addEventListener('load', function() {
-    const loader = document.getElementById('y2k-loader');
-    if (loader) {
-      loader.style.opacity = '0';
-      loader.style.transform = 'scale(1.05)';
-      
-      setTimeout(function() {
-        loader.style.display = 'none';
+    // Efek Klik Beruntun (Popping Ulang)
+    document.querySelectorAll('.stiker').forEach(function(button) {
+      button.addEventListener('click', function() {
         document.querySelectorAll('.stiker').forEach(function(el) {
+          el.classList.remove('mulai-pop');
+          void el.offsetWidth; 
           el.classList.add('mulai-pop');
         });
-      }, 500); 
-    }
-  });
-
-  document.querySelectorAll('.stiker').forEach(function(button) {
-    button.addEventListener('click', function() {
-      document.querySelectorAll('.stiker').forEach(function(el) {
-        el.classList.remove('mulai-pop');
-        void el.offsetWidth; 
-        el.classList.add('mulai-pop');
       });
     });
-  });
-</script>
+  </script>
+</body>
+</html>
