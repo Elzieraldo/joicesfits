@@ -2,14 +2,13 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
   <title>Joice's Fits Moodboard</title>
   <style>
     * {
       box-sizing: border-box;
     }
     
-    /* Memaksa halaman dasar kosong tanpa margin/padding */
     body, html {
       margin: 0;
       padding: 0;
@@ -18,7 +17,7 @@
       background-color: #fdfdfd;
     }
 
-    /* 1. Background Kotak-Kotak: DIJAMIN 100% LIVE FULL SCREEN MENTOK UJUNG */
+    /* Background Kotak-Kotak: 100% Full Screen Semuka Layar */
     .y2k-container {
       position: relative;
       width: 100%;   
@@ -28,10 +27,12 @@
         linear-gradient(to right, #bde0fe 1px, transparent 1px), 
         linear-gradient(to bottom, #bde0fe 1px, transparent 1px); 
       background-size: 15px 15px; 
-      padding: 20px;
+      overflow-x: hidden;
+      overflow-y: auto; /* Membuka fitur scroll up/down di semua device */
+      padding-bottom: 50px;
     }
 
-    /* 2. Layar Loading Screen */
+    /* Layar Loading */
     .loading-screen {
       position: fixed;
       top: 0;
@@ -67,7 +68,7 @@
       letter-spacing: 2px;
     }
 
-    /* 3. Efek Animasi Pop Up */
+    /* Animasi Pop Up */
     @keyframes popUp {
       0% { opacity: 0; transform: scale(0.2) rotate(-15deg); }
       60% { opacity: 1; transform: scale(1.2) rotate(10deg); }
@@ -75,8 +76,9 @@
       100% { opacity: 1; transform: scale(1) rotate(0deg); }
     }
 
-    /* 4. Aturan Dasar Stiker */
+    /* Pengaturan Dasar Stiker */
     .stiker {
+      position: absolute; /* Dikembalikan ke absolute agar bebas menyebar acak */
       opacity: 0;
       cursor: pointer;
       transition: transform 0.2s;
@@ -90,53 +92,46 @@
     }
 
     /* ======================================================= */
-    /* 💻 TAMPILAN LAPTOP / DESKTOP (Stiker Menyebar Estetik) */
+    /* 💻 TAMPILAN LAPTOP / DESKTOP (Ukuran Standar Layar Lebar) */
     /* ======================================================= */
     @media (min-width: 769px) {
-      .y2k-container {
-        height: 100vh;
-        overflow: auto;
-      }
-      .stiker {
-        position: absolute;
-      }
-      /* Tata letak persis berskala layar lebar */
-      .kerang   { width: 13vw;  top: 8vh;  left: 4vw;  }
-      .apel     { width: 14vw;  top: 18vh; left: 22vw; } 
+      .kerang   { width: 14vw;  top: 8vh;  left: 5vw;  }
+      .apel     { width: 15vw;  top: 20vh; left: 23vw; } 
       .kucing   { width: 16vw;  top: 10vh; left: 44vw; }
-      .kopi     { width: 14vw;  top: 18vh; left: 63vw; }
-      .fragile  { width: 13vw;  top: 12vh; left: 81vw; } 
+      .kopi     { width: 15vw;  top: 20vh; left: 63vw; }
+      .fragile  { width: 14vw;  top: 12vh; left: 80vw; } 
       
-      .anjing   { width: 16vw;  top: 42vh; left: 4vw;  }
-      .nota     { width: 17vw;  top: 44vh; left: 26vw; } 
-      .pisang   { width: 14vw;  top: 46vh; left: 52vw; } 
-      .kunci    { width: 16vw;  top: 42vh; left: 78vw; } 
+      .anjing   { width: 18vw;  top: 42vh; left: 5vw;  }
+      .nota     { width: 19vw;  top: 44vh; left: 28vw; } 
+      .pisang   { width: 15vw;  top: 48vh; left: 54vw; } 
+      .kunci    { width: 18vw;  top: 44vh; left: 76vw; } 
       
-      .txt-mood { width: 38vw;  top: 72vh; left: 4vw;  } 
-      .txt-welc { width: 32vw;  top: 75vh; left: 64vw; } 
+      .txt-mood { width: 42vw;  top: 68vh; left: 5vw;  } 
+      .txt-welc { width: 34vw;  top: 74vh; left: 58vw; } 
     }
 
     /* ======================================================= */
-    /* 📱 TAMPILAN HP / MOBILE (Otomatis Rapi Berbaris Kebawah)*/
+    /* 📱 TAMPILAN HP / MOBILE (Tetap Menyebar Acak, Bisa Scroll) */
     /* ======================================================= */
     @media (max-width: 768px) {
       .y2k-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 25px; /* Jarak antar stiker saat di-scroll */
-        padding-top: 40px;
-        padding-bottom: 60px;
-        overflow-y: auto; /* Biar HP bisa di-scroll kebawah */
+        min-height: 180vh; /* Memperpanjang kertas ke bawah khusus di HP agar muat di-scroll */
       }
-      .stiker {
-        position: relative;
-        max-width: 75%; /* Ukuran pas stiker di layar HP */
-        height: auto;
-      }
-      /* Mengatur urutan teks agar paling atas di HP */
-      .txt-welc { order: -2; max-width: 85%; }
-      .txt-mood { order: -1; max-width: 90%; }
+      
+      /* Mengubah ukuran dan posisi stiker di HP biar pas & estetik menyebar */
+      .kerang   { width: 32vw;  top: 5vh;   left: 8vw;  }
+      .apel     { width: 35vw;  top: 18vh;  left: 55vw; } 
+      .kucing   { width: 36vw;  top: 35vh;  left: 10vw; }
+      .kopi     { width: 35vw;  top: 48vh;  left: 52vw; }
+      .fragile  { width: 32vw;  top: 68vh;  left: 12vw; } 
+      
+      .anjing   { width: 42vw;  top: 82vh;  left: 50vw; }
+      .nota     { width: 45vw;  top: 100vh; left: 6vw;  } 
+      .pisang   { width: 36vw;  top: 120vh; left: 55vw; } 
+      .kunci    { width: 42vw;  top: 135vh; left: 10vw; } 
+      
+      .txt-mood { width: 85vw;  top: 155vh; left: 8vw;  } 
+      .txt-welc { width: 80vw;  top: 168vh; left: 10vw; } 
     }
   </style>
 </head>
@@ -164,7 +159,6 @@
   </div>
 
   <script>
-    // Script Menghilangkan Loader & Memicu Efek Pop Up
     window.addEventListener('load', function() {
       const loader = document.getElementById('y2k-loader');
       if (loader) {
@@ -179,7 +173,6 @@
       }
     });
 
-    // Efek Klik Beruntun (Popping Ulang)
     document.querySelectorAll('.stiker').forEach(function(button) {
       button.addEventListener('click', function() {
         document.querySelectorAll('.stiker').forEach(function(el) {
