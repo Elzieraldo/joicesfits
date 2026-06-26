@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Joice's Fits Moodboard</title>
   <style>
     * {
@@ -15,9 +15,10 @@
       width: 100%;
       height: 100%;
       background-color: #fdfdfd;
+      overflow-x: hidden; /* Mencegah layar geser kanan-kiri */
     }
 
-    /* Background Kotak-Kotak: 100% Full Screen Semuka Layar */
+    /* Background Kotak-Kotak Full Screen */
     .y2k-container {
       position: relative;
       width: 100%;   
@@ -27,9 +28,15 @@
         linear-gradient(to right, #bde0fe 1px, transparent 1px), 
         linear-gradient(to bottom, #bde0fe 1px, transparent 1px); 
       background-size: 15px 15px; 
-      overflow-x: hidden;
-      overflow-y: auto; /* Membuka fitur scroll up/down di semua device */
-      padding-bottom: 50px;
+    }
+
+    /* PAPAN VIRTUAL: Pengunci Rasio agar Laptop & HP Kembar Identik */
+    .moodboard-canvas {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      aspect-ratio: 16 / 9; /* Mengunci rasio layar lebar standar monitor */
+      margin: 0 auto;
     }
 
     /* Layar Loading */
@@ -78,7 +85,7 @@
 
     /* Pengaturan Dasar Stiker */
     .stiker {
-      position: absolute; /* Dikembalikan ke absolute agar bebas menyebar acak */
+      position: absolute;
       opacity: 0;
       cursor: pointer;
       transition: transform 0.2s;
@@ -92,47 +99,21 @@
     }
 
     /* ======================================================= */
-    /* 💻 TAMPILAN LAPTOP / DESKTOP (Ukuran Standar Layar Lebar) */
+    /* 📐 KOORDINAT PERSENTASE PERSIS SEPERTI DI LAPTOP KAMU */
     /* ======================================================= */
-    @media (min-width: 769px) {
-      .kerang   { width: 14vw;  top: 8vh;  left: 5vw;  }
-      .apel     { width: 15vw;  top: 20vh; left: 23vw; } 
-      .kucing   { width: 16vw;  top: 10vh; left: 44vw; }
-      .kopi     { width: 15vw;  top: 20vh; left: 63vw; }
-      .fragile  { width: 14vw;  top: 12vh; left: 80vw; } 
-      
-      .anjing   { width: 18vw;  top: 42vh; left: 5vw;  }
-      .nota     { width: 19vw;  top: 44vh; left: 28vw; } 
-      .pisang   { width: 15vw;  top: 48vh; left: 54vw; } 
-      .kunci    { width: 18vw;  top: 44vh; left: 76vw; } 
-      
-      .txt-mood { width: 42vw;  top: 55vh; left: 5vw;  } 
-      .txt-welc { width: 34vw;  top: 60vh; left: 58vw; } 
-    }
-
-    /* ======================================================= */
-    /* 📱 TAMPILAN HP / MOBILE (Tetap Menyebar Acak, Bisa Scroll) */
-    /* ======================================================= */
-    @media (max-width: 768px) {
-      .y2k-container {
-        min-height: 180vh; /* Memperpanjang kertas ke bawah khusus di HP agar muat di-scroll */
-      }
-      
-      /* Mengubah ukuran dan posisi stiker di HP biar pas & estetik menyebar */
-      .kerang   { width: 32vw;  top: 5vh;   left: 8vw;  }
-      .apel     { width: 35vw;  top: 18vh;  left: 55vw; } 
-      .kucing   { width: 36vw;  top: 35vh;  left: 10vw; }
-      .kopi     { width: 35vw;  top: 48vh;  left: 52vw; }
-      .fragile  { width: 32vw;  top: 68vh;  left: 12vw; } 
-      
-      .anjing   { width: 42vw;  top: 82vh;  left: 50vw; }
-      .nota     { width: 45vw;  top: 100vh; left: 6vw;  } 
-      .pisang   { width: 36vw;  top: 120vh; left: 55vw; } 
-      .kunci    { width: 42vw;  top: 135vh; left: 10vw; } 
-      
-      .txt-mood { width: 85vw;  top: 155vh; left: 8vw;  } 
-      .txt-welc { width: 80vw;  top: 168vh; left: 10vw; } 
-    }
+    .kerang   { width: 14%;  top: 8%;  left: 5%;  }
+    .apel     { width: 15%;  top: 18%; left: 23%; } 
+    .kucing   { width: 15%;  top: 10%; left: 44%; }
+    .kopi     { width: 15%;  top: 18%; left: 63%; }
+    .fragile  { width: 14%;  top: 12%; left: 80%; } 
+    
+    .anjing   { width: 18%;  top: 42%; left: 5%;  }
+    .nota     { width: 18%;  top: 45%; left: 28%; } 
+    .pisang   { width: 15%;  top: 48%; left: 54%; } 
+    .kunci    { width: 18%;  top: 44%; left: 76%; } 
+    
+    .txt-mood { width: 42%;  top: 55%; left: 5%;  } 
+    .txt-welc { width: 34%;  top: 58%; left: 58%; } 
   </style>
 </head>
 <body>
@@ -143,19 +124,21 @@
       <div class="loading-text">HOLD ON, BESTIE...</div>
     </div>
 
-    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-2.png" class="stiker kerang" alt="Kerang" loading="eager" fetchpriority="high">
-    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-3.png" class="stiker apel" alt="Apel" loading="eager" fetchpriority="high">
-    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-4.png" class="stiker kucing" alt="Kucing" loading="eager" fetchpriority="high">
-    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-5.png" class="stiker kopi" alt="Kopi" loading="eager" fetchpriority="high">
-    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-6.png" class="stiker fragile" alt="Fragile" loading="eager" fetchpriority="high">
-    
-    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-7.png" class="stiker anjing" alt="Anjing" loading="eager" fetchpriority="high">
-    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-10-1.png" class="stiker nota" alt="Nota Kunci" loading="eager" fetchpriority="high">
-    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-9.png" class="stiker pisang" alt="Pisang" loading="eager" fetchpriority="high">
-    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-11.png" class="stiker kunci" alt="Kunci" loading="eager" fetchpriority="high">
-    
-    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-12.png" class="stiker txt-mood" alt="Moodboard Text" loading="eager" fetchpriority="high">
-    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-13.png" class="stiker txt-welc" alt="Welcome Text" loading="eager" fetchpriority="high">
+    <div class="moodboard-canvas">
+      <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-2.png" class="stiker kerang" alt="Kerang" loading="eager" fetchpriority="high">
+      <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-3.png" class="stiker apel" alt="Apel" loading="eager" fetchpriority="high">
+      <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-4.png" class="stiker kucing" alt="Kucing" loading="eager" fetchpriority="high">
+      <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-5.png" class="stiker kopi" alt="Kopi" loading="eager" fetchpriority="high">
+      <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-6.png" class="stiker fragile" alt="Fragile" loading="eager" fetchpriority="high">
+      
+      <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-7.png" class="stiker anjing" alt="Anjing" loading="eager" fetchpriority="high">
+      <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-10-1.png" class="stiker nota" alt="Nota Kunci" loading="eager" fetchpriority="high">
+      <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-9.png" class="stiker pisang" alt="Pisang" loading="eager" fetchpriority="high">
+      <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-11.png" class="stiker kunci" alt="Kunci" loading="eager" fetchpriority="high">
+      
+      <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-12.png" class="stiker txt-mood" alt="Moodboard Text" loading="eager" fetchpriority="high">
+      <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/brain-dump-website-in-white-neon-pink-black-style-13.png" class="stiker txt-welc" alt="Welcome Text" loading="eager" fetchpriority="high">
+    </div>
   </div>
 
   <script>
