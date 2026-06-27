@@ -50,9 +50,7 @@
       margin: 0 auto;
     }
 
-    /* ======================================================= */
-    /* 💗 SECTION BARU 2: AREA PINK GRADASI (Tempat Pinterest) */
-    /* ======================================================= */
+    /* SECTION BARU 2: AREA PINK GRADASI (Tempat Pinterest) */
     .section-pink {
       position: relative;
       width: 100%;
@@ -67,9 +65,7 @@
       padding: 40px 20px;
     }
 
-    /* ======================================================= */
-    /* 🖤 SECTION BARU 3: AREA HITAM (Paling Bawah)           */
-    /* ======================================================= */
+    /* SECTION BARU 3: AREA HITAM (Paling Bawah) */
     .section-black {
       position: relative;
       width: 100%;
@@ -139,7 +135,7 @@
       transform: scale(1.15) translateY(-5px) !important;
     }
 
-    /* 📐 KOORDINAT PERSENTASE STIKER */
+    /* KOORDINAT PERSENTASE STIKER */
     .kerang   { width: 14%;  top: 8%;  left: 5%;  }
     .apel      { width: 15%;  top: 18%; left: 23%; } 
     .kucing   { width: 15%;  top: 10%; left: 44%; }
@@ -155,9 +151,9 @@
     .txt-welc { width: 34%;  top: 58%; left: 58%; } 
 
     /* CONTAINER UTAMA BROWSER WINDOW */
-    .browser-window {
+.browser-window {
       width: 100%;
-      max-width: 950px;
+      max-width: 1050px; /* Ditambah biar kotak browsernya lebih besar & muat 3 folder lebar */
       background: #e1e1e2; 
       border-radius: 12px;
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
@@ -209,6 +205,8 @@
       user-select: none;
       border-radius: 8px 8px 0 0;
       transition: all 0.2s;
+      display: flex;
+      align-items: center;
     }
 
     .tab.active {
@@ -216,7 +214,19 @@
       background: #f1f1f2; 
     }
 
-    /* AREA SEARCH BAR + TEXT HINT REQUEST KAMU */
+    /* Tombol X khusus di tab dinamis */
+    .tab-close-icon {
+      color: #ff5f56;
+      margin-left: 8px;
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 900;
+    }
+    .tab-close-icon:hover {
+      color: #d03027;
+    }
+
+    /* AREA SEARCH BAR */
     .browser-search-bar-row {
       background: #f1f1f2; 
       padding: 8px 16px 12px 16px;
@@ -236,7 +246,6 @@
       outline: none;
     }
 
-    /* Kalimat Petunjuk Tambahan Tepat di Bawah Search Box */
     .search-hint-text {
       font-size: 11px;
       color: #666;
@@ -260,7 +269,6 @@
       transition: all 0.4s ease;
     }
 
-    /* 📦 ANIMASI KEDUT & BLUR MANAGEMENT (REQUEST SPESTAL) */
     .outfit-card {
       width: 100%;
       aspect-ratio: 4 / 5; 
@@ -273,14 +281,14 @@
       transition: filter 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    /* Kerangka Teks Overlay "Click to open" */
-    .click-overlay {
+.click-overlay {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.4);
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: center;      /* Bikin ke tengah secara vertikal */
+      justify-content: center;  /* Bikin ke tengah secara horizontal */
+      text-align: center;       /* Ngerapiin teksnya biar gak mencong */
       color: white;
       font-size: 16px;
       font-weight: bold;
@@ -288,36 +296,73 @@
       letter-spacing: 1px;
       opacity: 0;
       transition: opacity 0.4s ease;
-      pointer-events: none; /* Biar gak ngeblok klik mouse */
+      pointer-events: none;
     }
 
-    /* Jalankan Animasi Denyut Nadi / Kedut */
     @keyframes heartbeat {
       0% { transform: scale(1); box-shadow: 0 4px 10px rgba(255, 20, 147, 0.2); }
       50% { transform: scale(1.03); box-shadow: 0 12px 28px rgba(255, 20, 147, 0.6); }
       100% { transform: scale(1); box-shadow: 0 4px 10px rgba(255, 20, 147, 0.2); }
     }
 
-    /* Ketika terpicu scroll, outfit-card pertama dapet kelas ini */
     .outfit-card.focus-pulse {
       animation: heartbeat 1.4s infinite ease-in-out;
       border: 3px solid #ff1493;
     }
-    /* Memunculkan tulisan "Click to open?" */
     .outfit-card.focus-pulse .click-overlay {
       opacity: 1;
     }
-
-    /* Kartu lain yang dapet kelas blur bakal buram otomatis */
     .outfit-card.focus-blur {
       filter: blur(5px);
       opacity: 0.5;
     }
-
     .outfit-card img {
       width: 100%;
       height: 100%;
       object-fit: cover; 
+    }
+
+/* ======================================================= */
+    /* 📁 CSS FOLDER BY STYLE (UKURAN 100% ORIGINAL CETAKAN)   */
+    /* ======================================================= */
+    .style-folder-grid {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 3%; /* Jarak antar folder pakai persen biar responsif */
+    }
+
+    .folder-card {
+      width: 31.33%; /* Dikunci maksimal 3 folder per baris */
+      background: #ffffff; /* Background putih murni */
+      border-radius: 6px;
+      padding: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03); /* Bayangan super halus & estetik */
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-bottom: 15px;
+    }
+
+    .folder-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1); /* Bayangan sedikit menebal pas di-hover */
+    }
+
+    .folder-card img {
+      width: 100%;
+      height: auto; /* Biar gambar proporsional, gak ketarik */
+      object-fit: contain; /* Nampilin gambar utuh tanpa di-crop */
+      border-radius: 4px;
+    }
+
+    .folder-title {
+      margin-top: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      text-transform: capitalize;
     }
   </style>
 </head>
@@ -368,20 +413,81 @@
       </div>
 
       <div class="pinterest-scroll-box">
+        
         <div class="outfit-grid" id="outfitGrid">
           
-          <div class="outfit-card" id="targetOutfit">
+          <div class="outfit-card" id="targetOutfit" data-tags="casual">
             <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit Utama">
             <div class="click-overlay">CLICK TO OPEN?</div>
           </div>
 
-          <div class="outfit-card"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 2"></div>
-          <div class="outfit-card"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 3"></div>
-          <div class="outfit-card"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 4"></div>
-          <div class="outfit-card"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 5"></div>
-          <div class="outfit-card"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 6"></div>
+          <div class="outfit-card" data-tags="chic"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 2"></div>
+          <div class="outfit-card" data-tags="streetwear"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 3"></div>
+          <div class="outfit-card" data-tags="formal"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 4"></div>
+          <div class="outfit-card" data-tags="vintage"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 5"></div>
+          <div class="outfit-card" data-tags="y2k"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 6"></div>
           
         </div>
+
+        <div class="style-folder-grid" id="styleFolderGrid" style="display: none;">
+          
+          <div class="folder-card" onclick="pilihStyle('casual')">
+            <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/wp-17825378198111054761054843323429.png" alt="Casual">
+            <div class="folder-title">Casual</div>
+          </div>
+
+          <div class="folder-card" onclick="pilihStyle('chic')">
+            <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/wp-17825378195711710663006377581390.png" alt="Chic">
+            <div class="folder-title">Chic</div>
+          </div>
+
+          <div class="folder-card" onclick="pilihStyle('streetwear')">
+            <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/wp-17825378193074511645452968686145.png" alt="Streetwear">
+            <div class="folder-title">Streetwear</div>
+          </div>
+
+          <div class="folder-card" onclick="pilihStyle('formal')">
+            <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/wp-17825378190701655150391165726779.png" alt="Formal">
+            <div class="folder-title">Formal</div>
+          </div>
+
+          <div class="folder-card" onclick="pilihStyle('edgy')">
+            <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/wp-17825349687603387663409638171970.png" alt="Edgy">
+            <div class="folder-title">Edgy</div>
+          </div>
+
+          <div class="folder-card" onclick="pilihStyle('vintage')">
+            <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/wp-17825349685717572163649360487404.png" alt="Vintage">
+            <div class="folder-title">Vintage</div>
+          </div>
+
+          <div class="folder-card" onclick="pilihStyle('preppy')">
+            <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/wp-1782534968347108168795206339104.png" alt="Preppy">
+            <div class="folder-title">Preppy</div>
+          </div>
+
+          <div class="folder-card" onclick="pilihStyle('grunge')">
+            <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/wp-17825349679887989774735094526187.png" alt="Grunge">
+            <div class="folder-title">Grunge</div>
+          </div>
+
+          <div class="folder-card" onclick="pilihStyle('sporty')">
+            <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/wp-1782534967517408597156101634521.png" alt="Sporty">
+            <div class="folder-title">Sporty</div>
+          </div>
+
+          <div class="folder-card" onclick="pilihStyle('coquette')">
+            <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/wp-17825349671396185005673948344033.png" alt="Coquette">
+            <div class="folder-title">Coquette</div>
+          </div>
+
+          <div class="folder-card" onclick="pilihStyle('y2k')">
+            <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/wp-17825349674055171556141433089779.png" alt="Y2K">
+            <div class="folder-title">Y2K</div>
+          </div>
+
+        </div>
+
       </div>
 
     </div>
@@ -398,22 +504,46 @@
   </div>
 
   <script>
-    // 1. Loader Screen Script
-    window.addEventListener('load', function() {
+  // 1. Loader Screen Script (VERSI BARU: Ngebut & Pinter!)
+    document.addEventListener("DOMContentLoaded", function() {
       const loader = document.getElementById('y2k-loader');
-      if (loader) {
-        loader.style.opacity = '0';
-        loader.style.transform = 'scale(1.05)';
-        setTimeout(function() {
-          loader.style.display = 'none';
-          document.querySelectorAll('.stiker').forEach(function(el) {
-            el.classList.add('mulai-pop');
-          });
-        }, 500); 
+      if (!loader) return;
+
+      // Kasih tahu satpam: "Cuma tunggu stiker sama gambar baju pertama aja ya!"
+      const gambarWajib = Array.from(document.querySelectorAll('.stiker, #targetOutfit img'));
+      let jumlahSiap = 0;
+
+      function bukaLayarLoading() {
+        jumlahSiap++;
+        // Kalau gambar wajib udah beres di-download semua, langsung buka tirainya!
+        if (jumlahSiap === gambarWajib.length) {
+          loader.style.opacity = '0';
+          loader.style.transform = 'scale(1.05)';
+          setTimeout(function() {
+            loader.style.display = 'none';
+            // Panggil animasi pop-up stikernya
+            document.querySelectorAll('.stiker').forEach(function(el) {
+              el.classList.add('mulai-pop');
+            });
+          }, 500); 
+        }
+      }
+
+      // Cek satu-satu apakah gambarnya udah siap
+      if (gambarWajib.length === 0) {
+        bukaLayarLoading(); // Jaga-jaga kalau error
+      } else {
+        gambarWajib.forEach(img => {
+          if (img.complete) {
+            bukaLayarLoading(); // Gambarnya udah ada di cache / cepet banget
+          } else {
+            img.addEventListener('load', bukaLayarLoading); // Nunggu gambar selesai
+            img.addEventListener('error', bukaLayarLoading); // Kalau gambar error, tetep lanjut biar web nggak stuck loading selamanya
+          }
+        });
       }
     });
-
-    // 2. Animasi Pop-Up Stiker Saat Diklik
+// 2. Animasi Pop-Up Stiker
     document.querySelectorAll('.stiker').forEach(function(button) {
       button.addEventListener('click', function() {
         document.querySelectorAll('.stiker').forEach(function(el) {
@@ -424,26 +554,114 @@
       });
     });
 
-    // 3. Fungsi Navigasi Tab
+    // 3. FUNGSI SAKTI: Navigasi Tab ALL & BY STYLE
     function gantiTab(elemen) {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('#tabs .tab').forEach(t => t.classList.remove('active'));
       elemen.classList.add('active');
+
+      const namaTab = elemen.innerText.trim();
+      const gridBaju = document.getElementById('outfitGrid');
+      const gridFolder = document.getElementById('styleFolderGrid');
+      const inputSearch = document.querySelector('.search-box');
+
+      // Kalau tab ALL atau BY STYLE diklik, hapus tab dinamis (kalau lagi terbuka)
+      const tabDinamis = document.getElementById('dynamic-tab');
+      if (tabDinamis) tabDinamis.remove();
+
+      if (namaTab === 'ALL') {
+        gridBaju.style.display = 'grid';
+        gridFolder.style.display = 'none';
+        document.querySelectorAll('.outfit-card').forEach(card => card.style.display = 'block');
+        if(inputSearch) inputSearch.value = ''; // Kosongin search box
+      } else if (namaTab === 'BY STYLE') {
+        gridBaju.style.display = 'none';
+        gridFolder.style.display = 'flex';
+      }
     }
 
-    // 4. SCRIPT LOGIKA KUNCI FOKUS & SCROLL DETECTOR (REQUEST SPECIAL!)
+    // 4. FUNGSI SAKTI: Waktu Folder Gaya Diklik
+    function pilihStyle(namaStyle) {
+      // 1. Buka lemari baju, tutup lemari folder
+      document.getElementById('styleFolderGrid').style.display = 'none';
+      document.getElementById('outfitGrid').style.display = 'grid';
+      
+      // 2. Matikan status aktif tab ALL / BY STYLE
+      document.querySelectorAll('#tabs .tab').forEach(t => t.classList.remove('active'));
+
+      // 3. Hapus tab dinamis lama kalau ada
+      const tabDinamisLama = document.getElementById('dynamic-tab');
+      if (tabDinamisLama) tabDinamisLama.remove();
+
+      // 4. BIKIN TAB DINAMIS BARU + TOMBOL X
+      const tabBaru = document.createElement('div');
+      tabBaru.className = 'tab active';
+      tabBaru.id = 'dynamic-tab';
+      
+      // Di sinilah tombol X disematkan (hanya di tab ini!)
+      tabBaru.innerHTML = `${namaStyle.toUpperCase()} <span class="tab-close-icon" onclick="tutupTabDinamis(event)">✖</span>`;
+      
+      // Kalau tab dinamisnya diklik (bukan X-nya), filter ulang
+      tabBaru.onclick = function() {
+        document.querySelectorAll('#tabs .tab').forEach(t => t.classList.remove('active'));
+        tabBaru.classList.add('active');
+        document.getElementById('styleFolderGrid').style.display = 'none';
+        document.getElementById('outfitGrid').style.display = 'grid';
+        jalankanFilterGaya(namaStyle);
+      };
+      
+      document.getElementById('tabs').appendChild(tabBaru);
+
+      // 5. Jalankan Filternya
+      jalankanFilterGaya(namaStyle);
+    }
+
+    // 5. FUNGSI SAKTI: Waktu Tombol X di Tab Dinamis Diklik
+    function tutupTabDinamis(event) {
+      event.stopPropagation(); // Biar tab dinamisnya nggak ikut keklik
+      const tabAll = document.querySelector('#tabs .tab'); // Cari tab ALL
+      gantiTab(tabAll); // Jalankan saklar ALL
+    }
+
+    // 6. FUNGSI SAKTI: Mesin Filter Baju
+    function jalankanFilterGaya(kataKunci) {
+      const cards = document.querySelectorAll('.outfit-card');
+      cards.forEach(card => {
+        const tags = card.getAttribute('data-tags') ? card.getAttribute('data-tags').toLowerCase() : '';
+        if (tags.includes(kataKunci.toLowerCase())) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // 7. FUNGSI SAKTI: Search Box
+    const searchInput = document.querySelector('.search-box');
+    if(searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        // Balikin ke tab ALL diam-diam tiap kali ngetik
+        const tabAll = document.querySelector('#tabs .tab');
+        if(!tabAll.classList.contains('active')) {
+          gantiTab(tabAll); 
+        }
+        const kataKunci = e.target.value.toLowerCase().trim();
+        jalankanFilterGaya(kataKunci);
+      });
+    }
+
+    // 8. LOGIKA KUNCI FOKUS & SCROLL DETECTOR
     const targetSection = document.getElementById('pinterest-section');
     const targetCard = document.getElementById('targetOutfit');
     const allCards = document.querySelectorAll('.outfit-card');
 
     const observerOptions = {
       root: null,
-      threshold: 0.4 // Memicu efek ketika 40% area pinterest sudah muncul di layar
+      threshold: 0.4
     };
 
     const scrollObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // AKTIFKAN SIHIR: Target kedut-kedut, yang lain kena kutuk blur!
           targetCard.classList.add('focus-pulse');
           allCards.forEach(card => {
             if (card !== targetCard) {
@@ -454,10 +672,8 @@
       });
     }, observerOptions);
 
-    // Mulai mengawasi pergerakan scroll menuju section pinterest
     scrollObserver.observe(targetSection);
 
-    // Menghilangkan efek blur & kedut saat kartu utama sukses diklik user
     targetCard.addEventListener('click', function() {
       targetCard.classList.remove('focus-pulse');
       allCards.forEach(card => card.classList.remove('focus-blur'));
