@@ -345,17 +345,46 @@
       transition: all 0.4s ease;
     }
 
-    .outfit-card {
-      width: 100%;
-      aspect-ratio: 4 / 5; 
-      background: #f5f5f5;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      position: relative;
-      cursor: pointer;
-      transition: filter 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    }
+.outfit-card {
+  width: 100%;
+  /* 🌟 KUNCI UTAMA: Mengunci perbandingan kotak biar stabil berbentuk persegi panjang vertikal */
+  aspect-ratio: 4 / 5.5; 
+  background: #ffffff;
+  border: 2px solid #8095d6;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 4px 4px 0px rgba(128, 149, 214, 0.2);
+  position: relative;
+  cursor: pointer;
+  transition: filter 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  
+  /* Membuat susunan vertikal: Foto di atas, teks judul di bawah */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🌟 KUNCI KEDUA: Memaksa gambar di dalam kartu agar pas, tidak meluber atau melar */
+.outfit-card img {
+  width: 100%;
+  flex: 1;
+  object-fit: cover; /* Memotong gambar secara proporsional agar memenuhi kotak tanpa gepeng */
+  display: block;
+}
+
+/* Tambahan gaya teks judul volume di bawah gambar biar makin cakep */
+.outfit-title {
+  background: #ffffff;
+  color: #4b5f99;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px 5px;
+  border-top: 2px solid #edf3ff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Menambahkan titik tiga (...) kalau judul kepanjangan */
+}
 
     .click-overlay {
       position: absolute;
@@ -499,6 +528,7 @@
       position: relative;
       width: 100%; height: 100%;
       display: flex; align-items: center; justify-content: center;
+      cursor: grab;
     }
 
     .window-item-card {
@@ -578,15 +608,14 @@
       display: block;
     }
 
-    /* 🎯 FORMULASI 3D CAROUSEL BARU */
-    .window-item-card.pos-prev3  { opacity: 0.3;  transform: translateX(-175px) scale(0.55); z-index: 2;  pointer-events: auto; }
-    .window-item-card.pos-prev2  { opacity: 0.6;  transform: translateX(-120px) scale(0.7);   z-index: 3;  pointer-events: auto; }
-    .window-item-card.pos-prev   { opacity: 0.85; transform: translateX(-60px) scale(0.85);  z-index: 4;  pointer-events: auto; }
-    .window-item-card.pos-center { opacity: 1;    transform: translateX(0) scale(1.05);      z-index: 10; pointer-events: auto; }
-    .window-item-card.pos-next   { opacity: 0.85; transform: translateX(60px) scale(0.85);   z-index: 4;  pointer-events: auto; }
-    .window-item-card.pos-next2  { opacity: 0.6;  transform: translateX(120px) scale(0.7);    z-index: 3;  pointer-events: auto; }
-    .window-item-card.pos-next3  { opacity: 0.3;  transform: translateX(175px) scale(0.55);  z-index: 2;  pointer-events: auto; }
-
+/* 🎯 FORMULASI 3D CAROUSEL BARU (SUDAH DIPERLEBAR) */
+.window-item-card.pos-prev3  { opacity: 0.3;  transform: translateX(-300px) scale(0.55); z-index: 2;  pointer-events: auto; }
+.window-item-card.pos-prev2  { opacity: 0.6;  transform: translateX(-200px) scale(0.7);   z-index: 3;  pointer-events: auto; }
+.window-item-card.pos-prev   { opacity: 0.85; transform: translateX(-100px) scale(0.85);  z-index: 4;  pointer-events: auto; }
+.window-item-card.pos-center { opacity: 1;    transform: translateX(0) scale(1.05);      z-index: 10; pointer-events: auto; }
+.window-item-card.pos-next   { opacity: 0.85; transform: translateX(100px) scale(0.85);   z-index: 4;  pointer-events: auto; }
+.window-item-card.pos-next2  { opacity: 0.6;  transform: translateX(200px) scale(0.7);    z-index: 3;  pointer-events: auto; }
+.window-item-card.pos-next3  { opacity: 0.3;  transform: translateX(300px) scale(0.55);  z-index: 2;  pointer-events: auto; }
     /* 🕹️ NAVIGASI BAR TENGAH PRESISI SIMETRIS */
     .nav-control-bar {
       position: absolute;
@@ -698,6 +727,277 @@
       .nav-arrow-btn { width: 24px; }
       .nav-control-bar { gap: 8px; bottom: 3%; }
     }
+    /* 📱 SOLUSI AMPUH PANGKAS JARAK JAUH DI HP */
+@media (max-width: 768px) {
+  /* 1. Memaksa bungkusan stiker atas agar tingginya pas dengan papan stikernya, tidak menyisakan ruang kosong */
+  .y2k-container {
+    min-height: auto !important;
+    height: auto !important;
+    padding-bottom: 5px !important;
+  }
+
+  /* 2. Merapatkan area pink gradasi agar langsung nempel pas di bawah papan stiker */
+  .section-pink {
+    margin-top: 0 !important;
+    padding-top: 15px !important;
+    padding-bottom: 25px !important;
+    min-height: auto !important; /* Biar flexibel di HP */
+  }
+
+  /* 3. Menyesuaikan ukuran jendela browser di HP agar proporsional */
+  .browser-window {
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+    width: 100% !important;
+  }
+}
+/* 📱 LANJUTAN DALAM @MEDIA (MAX-WIDTH: 768px) */
+@media (max-width: 768px) {
+  
+  /* 1. Menjinakkan bungkusan luar modal agar fleksibel & tingginya portrait */
+  .pop-modal-content {
+    width: 95% !important;
+    max-width: 380px !important; /* Membatasi lebar agar pas di genggaman HP */
+    height: 520px !important;    /* Membuat proporsinya menjadi portrait (tinggi ke bawah) */
+    padding: 15px !important;
+  }
+
+  /* 2. Menyesuaikan area panggung carousel */
+  .carousel-stage {
+    height: 75% !important; /* Memberikan ruang ekstra vertikal di dalam modal */
+  }
+
+  /* 3. Membuat ukuran kartu baju menjadi portrait & mengecil di HP */
+  .window-item-card {
+    width: 150px !important;  /* Ukuran menyusut agar muat di layar HP */
+    height: 220px !important; /* Proporsi portrait */
+  }
+
+  /* 4. FORMULASI 3D KHUSUS HP (Hanya menampilkan Center + Intipan Kanan & Kiri) */
+  /* Kartu yang terlalu jauh (prev3, prev2, next2, next3) kita sembunyikan agar tidak semrawut */
+  .window-item-card.pos-prev3,
+  .window-item-card.pos-prev2,
+  .window-item-card.pos-next2,
+  .window-item-card.pos-next3 { 
+    opacity: 0 !important; 
+    pointer-events: none !important; 
+  }
+
+  /* Kartu Kiri (Intipan Kiri) - digeser sedikit saja ke kiri */
+  .window-item-card.pos-prev { 
+    opacity: 0.4 !important; 
+    transform: translateX(-75px) scale(0.8) !important; 
+    z-index: 4; 
+  }
+
+  /* Kartu Utama (Center) - Tetap tegak dan berkuasa di tengah */
+  .window-item-card.pos-center { 
+    opacity: 1 !important; 
+    transform: translateX(0) scale(1.05) !important; 
+    z-index: 10; 
+  }
+
+  /* Kartu Kanan (Intipan Kanan) - digeser sedikit saja ke kanan */
+  .window-item-card.pos-next { 
+    opacity: 0.4 !important; 
+    transform: translateX(75px) scale(0.8) !important; 
+    z-index: 4; 
+  }
+}
+/* 📱 TAMBAHKAN INI DI DALAM @MEDIA (MAX-WIDTH: 768px) KAMU */
+@media (max-width: 768px) {
+
+  /* 1. Memaksa background modal utama berubah wujud jadi portrait */
+  .pop-modal-content {
+    width: 90% !important;        /* Lebarnya mengecil pas di layar HP */
+    max-width: 360px !important;   /* Batas maksimal lebar biar proporsional */
+    height: 540px !important;      /* Tingginya ditambah ke bawah agar tegak (portrait) */
+    padding: 15px !important;
+    display: flex !important;
+    flex-direction: column !important; /* Menyusun elemen di dalamnya ke bawah */
+  }
+
+  /* 2. Menjinakkan panggung carousel bagian dalam agar pas dengan frame portrait */
+  .carousel-stage {
+    width: 100% !important;
+    height: 75% !important;       /* Mengambil sebagian besar panggung untuk kartu baju */
+    margin-top: 10px !important;
+  }
+
+  /* 3. Menyesuaikan posisi tombol navigasi panah kiri & kanan di HP */
+  .pop-modal-content button#prevBtn,
+  .pop-modal-content button#nextBtn {
+    position: absolute !important;
+    bottom: 20px !important;      /* Diturunkan ke bawah bawah frame portrait */
+    transform: none !important;   /* Menghapus centering vertical bawaan laptop */
+    top: auto !important;
+    z-index: 20 !important;
+  }
+
+  /* Tombol Prev agak di kiri bawah */
+  .pop-modal-content button#prevBtn {
+    left: 30% !important;
+  }
+
+  /* Tombol Next agak di kanan bawah */
+  .pop-modal-content button#nextBtn {
+    right: 30% !important;
+  }
+/* 📱 PERBAIKAN TARGET REAL UNTUK BACKGROUND LADANG WINDOWS XP */
+@media (max-width: 768px) {
+
+  /* 1. Menargetkan bungkusan asli jendela ladang retro kamu */
+  .retro-window-container {
+    width: 95% !important;           /* Mempersempit lebar kotak di HP */
+    max-width: 360px !important;     
+    aspect-ratio: auto !important;   /* Mematikan rasio landscape bawaan laptop */
+    height: 520px !important;        /* Menarik tinggi ke bawah agar berubah jadi PORTRAIT */
+    
+    /* 🔥 KUNCI UTAMA: Memaksa gambar ladang menutupi frame portrait secara proporsional */
+    background-size: cover !important;       
+    background-position: center !important;  
+    background-repeat: no-repeat !important;
+  }
+
+  /* 2. Menyesuaikan area tontonan carousel agar presisi di dalam frame portrait */
+  .carousel-view-area {
+    top: 8% !important;
+    height: 80% !important;
+  }
+
+  /* 3. Menyesuaikan area navigasi bawah (tombol panah) di HP */
+  .nav-control-bar {
+    bottom: 2% !important;
+    gap: 10px !important;
+  }
+}
+/* 📱 TAMBAHKAN INI DI DALAM @MEDIA (MAX-WIDTH: 768px) KAMU */
+/* 📱 JALUR CEPAT: GEDEKIN TOMBOL CLOSE & SEMUA STIKER DI HP */
+@media (max-width: 768px) {
+
+  /* 🐸🐱💫 Menargetkan tombol silang close DAN semua kelas .pop-stiker sekaligus */
+  .close-window-btn,
+  .pop-stiker {
+    /* Menaikkan ukuran/skala sebesar 70% lebih besar di HP biar gak sekecil semut */
+    transform: scale(2.5) !important; 
+    
+    /* Mengunci titik pembesaran di tengah agar stiker membesar dengan rapi di tempatnya */
+    transform-origin: center center; 
+  }
+}
+/* ========================================================= */
+/* 📱 SATU BLOK MEDIA QUERY HP BERSIH (TOTAL FIX ALL IN ONE) */
+/* ========================================================= */
+@media (max-width: 768px) {
+  
+  /* --- 1. Layout Area Atas & Grid Pink --- */
+  .y2k-container {
+    min-height: auto !important;
+    height: auto !important;
+    padding-bottom: 5px !important;
+  }
+  .section-pink {
+    margin-top: 0 !important;
+    padding-top: 15px !important;
+    padding-bottom: 25px !important;
+    min-height: auto !important;
+  }
+  .browser-window {
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+    width: 100% !important;
+  }
+
+  /* --- 2. Jendela Retro Modal Ladang (Portrait Mode) --- */
+  .retro-window-container {
+    width: 95% !important;
+    max-width: 360px !important;
+    aspect-ratio: auto !important;
+    height: 520px !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }
+  .carousel-view-area {
+    top: 8% !important;
+    height: 80% !important;
+  }
+  .carousel-stage {
+    height: 75% !important;
+  }
+  .nav-control-bar {
+    bottom: 2% !important;
+    gap: 10px !important;
+  }
+
+  /* --- 3. Kartu Carousel Baju di Dalam Modal --- */
+  .window-item-card {
+    width: 150px !important;
+    height: 220px !important;
+  }
+  .window-item-card.pos-prev3,
+  .window-item-card.pos-prev2,
+  .window-item-card.pos-next2,
+  .window-item-card.pos-next3 { 
+    opacity: 0 !important; 
+    pointer-events: none !important; 
+  }
+  .window-item-card.pos-prev { 
+    opacity: 0.4 !important; 
+    transform: translateX(-75px) scale(0.8) !important; 
+    z-index: 4; 
+  }
+  .window-item-card.pos-center { 
+    opacity: 1 !important; 
+    transform: translateX(0) scale(1.05) !important; 
+    z-index: 10; 
+  }
+  .window-item-card.pos-next { 
+    opacity: 0.4 !important; 
+    transform: translateX(75px) scale(0.8) !important; 
+    z-index: 4; 
+  }
+
+  /* --- 4. Tombol Close & Stiker Modal Jadi Jumbo (Scale 2.5) --- */
+  .close-window-btn,
+  .pop-stiker {
+    transform: scale(2.5) !important;
+    transform-origin: center center;
+  }
+
+  /* --- 5. FIX: Mengecilkan Tulisan "Click to Open" di HP --- */
+  .click-overlay {
+    font-size: 11px !important;      /* Teks menciut agar pas di layar HP */
+    letter-spacing: 0px !important;  
+    padding: 5px !important;
+  }
+
+  /* --- 6. FIX: Menyelamatkan Tulisan "VOL. 1 ..." di Bawah Gambar agar Muncul --- */
+  .outfit-card {
+    aspect-ratio: auto !important;   /* Matikan rasio kaku laptop */
+    height: 200px !important;        /* Kunci tinggi total kartu di HP */
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .outfit-card img {
+    height: 165px !important;        /* Batasi tinggi gambar agar tidak serakah ruang */
+    width: 100% !important;
+    flex: none !important;           /* Matikan flex agar gambarnya mengalah */
+    object-fit: cover !important;
+  }
+
+  .outfit-title {
+    height: 35px !important;         /* Alokasikan sisa ruang pasti untuk bar tulisan */
+    font-size: 10px !important;      /* Perkecil teks info agar muat dan tidak patah */
+    padding: 4px 2px !important;
+    border-top: 1px solid #edf3ff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;  /* Cegah tulisan turun baris */
+  }
+}
   </style>
 </head>
 <body>
@@ -731,19 +1031,21 @@
       
       <div class="browser-top-bar">
         
-        <div style="display: flex; align-items: center; padding: 15px 25px 5px 25px; gap: 15px;">
-          <div class="star" style="font-size: 26px; color: #7b90cf; line-height: 1;">★</div>
-          
-          <div style="flex: 1; height: 36px; border: 2px solid #8095d6; border-radius: 6px; padding: 0 15px; display: flex; align-items: center; color: #6880c6; font-size: 15px; font-family: sans-serif; background: #ffffff; box-shadow: 3px 3px 0px #8095d6;">
-            https://pinterest.com/outfit-ideas_[]x
-          </div>
-          
-          <div class="controls" style="display: flex; gap: 8px;">
-            <div style="width: 32px; height: 32px; border: 2px solid #8095d6; border-radius: 6px; display: flex; justify-content: center; align-items: center; color: #8095d6; font-weight: bold; cursor: pointer; background: #ffffff; box-shadow: 3px 3px 0px #8095d6;">_</div>
-            <div style="width: 32px; height: 32px; border: 2px solid #8095d6; border-radius: 6px; display: flex; justify-content: center; align-items: center; color: #8095d6; font-weight: bold; font-size: 14px; cursor: pointer; background: #ffffff; box-shadow: 3px 3px 0px #8095d6;">▢</div>
-            <div style="width: 32px; height: 32px; border: 2px solid #8095d6; border-radius: 6px; display: flex; justify-content: center; align-items: center; color: #8095d6; font-weight: bold; font-size: 14px; cursor: pointer; background: #ffffff; box-shadow: 3px 3px 0px #8095d6;">✕</div>
-          </div>
-        </div>
+<div style="display: flex; align-items: center; padding: 15px 25px 5px 25px; gap: 10px; width: 100%; box-sizing: border-box; overflow: hidden;">
+  <div class="star" style="font-size: 26px; color: #7b90cf; line-height: 1; flex-shrink: 0;">★</div>
+  
+  <div style="flex: 1; min-width: 0; height: 36px; border: 2px solid #8095d6; border-radius: 6px; padding: 0 15px; display: flex; align-items: center; color: #6880c6; font-size: 15px; font-family: sans-serif; background: #ffffff; box-shadow: 3px 3px 0px #8095d6;">
+    <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%;">
+      https://pinterest.com/outfit-ideas_[]x
+    </span>
+  </div>
+  
+  <div class="controls" style="display: flex; gap: 6px; flex-shrink: 1; min-width: 0;">
+    <div style="width: 32px; height: 32px; min-width: 24px; border: 2px solid #8095d6; border-radius: 6px; display: flex; justify-content: center; align-items: center; color: #8095d6; font-weight: bold; cursor: pointer; background: #ffffff; box-shadow: 2px 2px 0px #8095d6; flex: 1;">_</div>
+    <div style="width: 32px; height: 32px; min-width: 24px; border: 2px solid #8095d6; border-radius: 6px; display: flex; justify-content: center; align-items: center; color: #8095d6; font-weight: bold; font-size: 14px; cursor: pointer; background: #ffffff; box-shadow: 2px 2px 0px #8095d6; flex: 1;">▢</div>
+    <div style="width: 32px; height: 32px; min-width: 24px; border: 2px solid #8095d6; border-radius: 6px; display: flex; justify-content: center; align-items: center; color: #8095d6; font-weight: bold; font-size: 14px; cursor: pointer; background: #ffffff; box-shadow: 2px 2px 0px #8095d6; flex: 1;">✕</div>
+  </div>
+</div>
 
         <div class="tab-container" id="tabs">
           <div class="tab active" onclick="gantiTab(this)">ALL</div>
@@ -753,27 +1055,39 @@
       </div>
 
       <div class="browser-search-bar-row">
-        <input type="text" class="search-box" placeholder="Search outfit...">
+        <input type="text" class="search-box" placeholder="Search outfit or style..." oninput="jalankanFilterGaya(this.value, true)">
         <span class="search-hint-text">Klik outfit untuk melihat detail baju dan dimana membelinya ✨</span>
       </div>
 
       <div class="pinterest-scroll-box">
         
-        <div class="outfit-grid" id="outfitGrid">
+<div class="outfit-grid" id="outfitGrid">
           
-          <div class="outfit-card" id="targetOutfit" data-tags="casual">
-            <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit Utama">
-            <div class="click-overlay">CLICK TO OPEN?</div>
-          </div>
+  <div class="outfit-card" id="targetOutfit" data-tags="casual streetwear" data-title="vol 1 the new ton">
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit Utama">
+    <div class="click-overlay">CLICK TO OPEN?</div> <div class="outfit-title">Vol 1: The New Ton</div>
+  </div>
 
-          <div class="outfit-card" data-tags="chic"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 2"></div>
-          <div class="outfit-card" data-tags="streetwear"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 3"></div>
-          <div class="outfit-card" data-tags="formal"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 4"></div>
-          <div class="outfit-card" data-tags="vintage"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 5"></div>
-          <div class="outfit-card" data-tags="y2k"><img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 6"></div>
-          
-        </div>
+  <div class="outfit-card" data-tags="chic formal" data-title="vol 2 chic silhouette">
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 2">
+    <div class="click-overlay">CLICK TO OPEN?</div> <div class="outfit-title">Vol 2: Chic Silhouette</div>
+  </div>
 
+  <div class="outfit-card" data-tags="streetwear y2k" data-title="vol 3 cyber street">
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 3">
+    <div class="click-overlay">CLICK TO OPEN?</div> <div class="outfit-title">Vol 3: Cyber Street</div>
+  </div>
+
+  <div class="outfit-card" data-tags="chic formal" data-title="vol 2 chic silhouette">
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 2">
+    <div class="outfit-title">Vol 2: Chic Silhouette</div>
+  </div>
+
+  <div class="outfit-card" data-tags="streetwear y2k" data-title="vol 3 cyber street">
+    <img src="https://joicesfits.wordpress.com/wp-content/uploads/2026/06/1_20260624_112159_00005215354693695756945.png" alt="Outfit 3">
+    <div class="outfit-title">Vol 3: Cyber Street</div>
+  </div>
+</div>
         <div class="style-folder-grid" id="styleFolderGrid" style="display: none;">
           
           <div class="folder-card" onclick="pilihStyle('casual')">
@@ -950,56 +1264,104 @@
       }
     }
 
-    // 4. FUNGSI SAKTI: Waktu Folder Gaya Diklik
-    function pilihStyle(namaStyle) {
-      document.getElementById('styleFolderGrid').style.display = 'none';
-      document.getElementById('outfitGrid').style.display = 'grid';
-      
-      document.querySelectorAll('#tabs .tab').forEach(t => t.classList.remove('active'));
+// REVISI: Berlaku untuk semua folder, mematikan denyut kartu utama saat masuk folder
+function pilihStyle(namaStyle) {
+  document.getElementById('styleFolderGrid').style.display = 'none';
+  document.getElementById('outfitGrid').style.display = 'grid';
+  
+  document.querySelectorAll('#tabs .tab').forEach(t => t.classList.remove('active'));
 
-      const tabDinamisLama = document.getElementById('dynamic-tab');
-      if (tabDinamisLama) tabDinamisLama.remove();
+  const tabDinamisLama = document.getElementById('dynamic-tab');
+  if (tabDinamisLama) tabDinamisLama.remove();
 
-      const tabBaru = document.createElement('div');
-      tabBaru.className = 'tab active';
-      tabBaru.id = 'dynamic-tab';
-      
-      tabBaru.innerHTML = `${namaStyle.toUpperCase()} <span class="tab-close-icon" onclick="tutupTabDinamis(event)">✖</span>`;
-      
-      tabBaru.onclick = function() {
-        document.querySelectorAll('#tabs .tab').forEach(t => t.classList.remove('active'));
-        tabBaru.classList.add('active');
-        document.getElementById('styleFolderGrid').style.display = 'none';
-        document.getElementById('outfitGrid').style.display = 'grid';
-        jalankanFilterGaya(namaStyle);
-      };
-      
-      document.getElementById('tabs').appendChild(tabBaru);
+  const tabBaru = document.createElement('div');
+  tabBaru.className = 'tab active';
+  tabBaru.id = 'dynamic-tab';
+  
+  tabBaru.innerHTML = `${namaStyle.toUpperCase()} <span class="tab-close-icon" onclick="tutupTabDinamis(event)">✖</span>`;
+  
+  tabBaru.onclick = function() {
+    document.querySelectorAll('#tabs .tab').forEach(t => t.classList.remove('active'));
+    tabBaru.classList.add('active');
+    document.getElementById('styleFolderGrid').style.display = 'none';
+    document.getElementById('outfitGrid').style.display = 'grid';
+    jalankanFilterGaya(namaStyle);
+  };
+  
+  document.getElementById('tabs').appendChild(tabBaru);
 
-      jalankanFilterGaya(namaStyle);
+  // ==========================================
+  // FIX KRUSIAL: Matikan denyut bergetar baju utama & blur baju lainnya
+  // ==========================================
+  const targetCard = document.getElementById('targetOutfit');
+  const allCards = document.querySelectorAll('.outfit-card');
+  if (targetCard) targetCard.classList.remove('focus-pulse');
+  allCards.forEach(card => card.classList.remove('focus-blur'));
+
+  jalankanFilterGaya(namaStyle);
+}
+
+// REVISI: Ketika tombol X di tab gaya diklik, otomatis balik ke menu pilihan folder (BY STYLE)
+function tutupTabDinamis(event) {
+  event.stopPropagation(); // Mencegah klik tembus
+  
+  // Hapus tab dinamis yang sedang aktif
+  const tabDinamis = document.getElementById('dynamic-tab');
+  if (tabDinamis) tabDinamis.remove();
+  
+  // Cari tab BY STYLE, pasang class active
+  document.querySelectorAll('#tabs .tab').forEach(t => t.classList.remove('active'));
+  const tabsList = document.querySelectorAll('#tabs .tab');
+  
+  // Mencari tab kedua (BY STYLE) secara aman
+  if (tabsList && tabsList[1]) {
+    tabsList[1].classList.add('active');
+  }
+
+  // Tampilkan kembali grid folder dan sembunyikan grid baju
+  document.getElementById('outfitGrid').style.display = 'none';
+  document.getElementById('styleFolderGrid').style.display = 'flex';
+}
+
+// FUNGSI PINTAR: Filter Multi-Keyword + Otomatis Pindah ke Tab ALL
+function jalankanFilterGaya(kataKunci, dariSearchBox = false) {
+  const cards = document.querySelectorAll('.outfit-card');
+  const kunciBersih = kataKunci.toLowerCase().trim();
+
+  // Tambahkan dariSearchBox di dalam if
+  if (dariSearchBox && kunciBersih !== "") {
+    const gridBaju = document.getElementById('outfitGrid');
+    const gridFolder = document.getElementById('styleFolderGrid');
+    
+    if (gridBaju) gridBaju.style.display = 'grid';
+    if (gridFolder) gridFolder.style.display = 'none';
+
+    document.querySelectorAll('#tabs .tab').forEach(t => t.classList.remove('active'));
+    const tabAll = document.querySelectorAll('#tabs .tab')[0];
+    if (tabAll) tabAll.classList.add('active');
+
+    const tabDinamis = document.getElementById('dynamic-tab');
+    if (tabDinamis) tabDinamis.remove();
+  }
+
+  // Proses menyembunyikan atau menampilkan kartu
+  cards.forEach(card => {
+    const tags = card.getAttribute('data-tags') ? card.getAttribute('data-tags').toLowerCase() : '';
+    const titleAttr = card.getAttribute('data-title') ? card.getAttribute('data-title').toLowerCase() : '';
+    
+    if (tags.includes(kunciBersih) || titleAttr.includes(kunciBersih)) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
     }
+  });
 
-    // 5. FUNGSI SAKTI: Waktu Tombol X di Tab Dinamis Diklik
-    function tutupTabDinamis(event) {
-      event.stopPropagation(); 
-      const tabAll = document.querySelector('#tabs .tab'); 
-      gantiTab(tabAll); 
-    }
+  // PANGGIL SAKLAR ESTAFET: Setelah grid berubah, hitung ulang siapa ketuanya!
+  perbaruiEfekFokusDinamis();
+}
+// DI SINI LANGSUNG LANJUT KE KOORDINAT NO 7 (SEARCH BOX)
 
-    // 6. FUNGSI SAKTI: Mesin Filter Baju
-    function jalankanFilterGaya(kataKunci) {
-      const cards = document.querySelectorAll('.outfit-card');
-      cards.forEach(card => {
-        const tags = card.getAttribute('data-tags') ? card.getAttribute('data-tags').toLowerCase() : '';
-        if (tags.includes(kataKunci.toLowerCase())) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-
-    // 7. FUNGSI SAKTI: Search Box
+// 7. FUNGSI SAKTI: Search Box
     const searchInput = document.querySelector('.search-box');
     if(searchInput) {
       searchInput.addEventListener('input', function(e) {
@@ -1008,7 +1370,9 @@
           gantiTab(tabAll); 
         }
         const kataKunci = e.target.value.toLowerCase().trim();
-        jalankanFilterGaya(kataKunci);
+        
+        // Ubah baris ini, tambahkan true
+        jalankanFilterGaya(kataKunci, true);
       });
     }
 
@@ -1040,6 +1404,27 @@
     targetCard.addEventListener('click', function() {
       targetCard.classList.remove('focus-pulse');
       allCards.forEach(card => card.classList.remove('focus-blur'));
+
+    document.querySelectorAll('.outfit-card').forEach(card => {
+      card.addEventListener('click', () => {
+        
+        // ========================================================
+        // KODE UTAMA REVISI: Begitu diklik, saklar jebret jadi TRUE!
+        // ========================================================
+        sudahPernahKlik = true;
+        perbaruiEfekFokusDinamis(); // Langsung hancurkan efek blur/kedet di seluruh web
+        // ========================================================
+
+        popModal.style.display = 'flex';
+        innerLoader.style.display = 'flex'; 
+
+        buildCarouselDom(); 
+
+        setTimeout(() => {
+          innerLoader.style.display = 'none'; 
+        }, 800);
+      });
+    });
     });
 
     // =========================================================
@@ -1126,6 +1511,8 @@
 
     document.querySelectorAll('.outfit-card').forEach(card => {
       card.addEventListener('click', () => {
+        sudahPernahKlik = true;
+        perbaruiEfekFokusDinamis();
         popModal.style.display = 'flex';
         innerLoader.style.display = 'flex'; 
 
@@ -1140,6 +1527,89 @@
     document.getElementById('closeModalBtn').addEventListener('click', () => {
       popModal.style.display = 'none';
     });
+    // SAKLAR SAKTI: Menandai apakah user sudah pernah mengklik baju (Default: belum/false)
+let sudahPernahKlik = false;
+
+// FUNGSI DINAMIS: Mengatur siapa yang berhak kedet-kedet dan siapa yang ngeblur
+function perbaruiEfekFokusDinamis() {
+  // Jika saklar sudah TRUE (sudah pernah klik), hancurkan semua efek blur & kedet selamanya
+  if (sudahPernahKlik) {
+    document.querySelectorAll('.outfit-card').forEach(card => {
+      card.classList.remove('focus-pulse', 'focus-blur');
+    });
+    return;
+  }
+
+  // Jika saklar masih FALSE, cari kartu mana yang lolos filter (display tidak 'none')
+  const kartuTersedia = Array.from(document.querySelectorAll('.outfit-card')).filter(card => {
+    return card.style.display !== 'none';
+  });
+
+  // Riset dulu semua status kartu biar gak tabrakan
+  document.querySelectorAll('.outfit-card').forEach(card => {
+    card.classList.remove('focus-pulse');
+    card.classList.add('focus-blur'); // Default sisanya dibikin samar/blur
+  });
+
+  // Oper tongkat estafet: Kartu pertama yang tampil otomatis jadi ketua kelompok (kedet-kedet)
+  if (kartuTersedia.length > 0) {
+    const ketuaKelompok = kartuTersedia[0];
+    ketuaKelompok.classList.remove('focus-blur'); // Ketua gak boleh blur
+    ketuaKelompok.classList.add('focus-pulse');    // Ketua wajib kedet-kedet
+  }
+}
+perbaruiEfekFokusDinamis();
+// =========================================================
+// 🫳 FITUR SLIDE / SWIPE UNTUK CAROUSEL RETRO
+// =========================================================
+const stageCarousel = document.getElementById('carouselStage');
+let koordinatAwalX = 0;
+let koordinatAkhirX = 0;
+let sedangKlikMouse = false;
+
+// Jarak minimal geseran (dalam pixel) agar dianggap melakukan slide
+const batasGeserMinimal = 40; 
+
+function deteksiArahSlide() {
+  const selisihJarak = koordinatAwalX - koordinatAkhirX;
+  
+  if (Math.abs(selisihJarak) > batasGeserMinimal) {
+    if (selisihJarak > 0) {
+      // Geser ke kiri -> Picu tombol Next
+      document.getElementById('nextBtn').click();
+    } else {
+      // Geser ke kanan -> Picu tombol Prev
+      document.getElementById('prevBtn').click();
+    }
+  }
+}
+
+// 📱 1. Deteksi Slide di Layar Sentuh (HP / Tablet)
+stageCarousel.addEventListener('touchstart', function(e) {
+  koordinatAwalX = e.touches[0].clientX;
+}, { passive: true });
+
+stageCarousel.addEventListener('touchend', function(e) {
+  koordinatAkhirX = e.changedTouches[0].clientX;
+  deteksiArahSlide();
+}, { passive: true });
+
+
+// 💻 2. Deteksi Slide Menggunakan Mouse (Laptop / PC)
+stageCarousel.addEventListener('mousedown', function(e) {
+  koordinatAwalX = e.clientX;
+  sedangKlikMouse = true;
+  stageCarousel.style.cursor = 'grabbing'; // Ubah cursor biar keren saat ditarik
+});
+
+// Kita pasang mouseup di window supaya kalau user lepas mouse di luar area tetap kedeteksi
+window.addEventListener('mouseup', function(e) {
+  if (!sedangKlikMouse) return;
+  koordinatAkhirX = e.clientX;
+  sedangKlikMouse = false;
+  stageCarousel.style.cursor = 'default';
+  deteksiArahSlide();
+});
   </script>
 </body>
 </html>
